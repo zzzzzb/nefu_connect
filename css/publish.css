@@ -3,15 +3,13 @@
     margin: 0;
 }
 html, body{
-    width: 100%;
-    height: 100%;
     font-size: 10px;
 }
-.mask{
-    position: absolute;
+.publish-mask{
+    position: fixed;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 1031;
     width: 100%;
     height: 100%;
     background: #cccccc;
@@ -19,15 +17,16 @@ html, body{
     filter:alpha(opacity=30);
 }
 .publish-box{
-    position: relative;
-    z-index: 2;
+    position: fixed;
+    top: 150px;
+    left:25%;
+    z-index: 1032;
     width: 50%;
     height: 250px;
     box-shadow: 4px 4px 20px 2px;
     -moz-box-shadow: 4px 4px 20px 2px;
     -webkit-box-shadow: 4px 4px 20px 2px;
     -o-box-shadow: 4px 4px 20px 2px;
-    margin: 300px auto 0 auto;
     background: #ffffff;
 }
 .publish-header{
@@ -90,8 +89,8 @@ textarea{
 }
 .publish-checkbox label::after{
     content: '';
-    height: 30px;
-    width: 30px;
+    height: 28px;
+    width: 28px;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
     border-radius: 100%;
@@ -169,4 +168,10 @@ textarea{
     -webkit-box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
     box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+}
+@media(max-width: 600px){
+    .publish-box{
+        width: 80%;
+        left:10%;
+    }
 }

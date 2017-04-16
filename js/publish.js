@@ -3,7 +3,7 @@
  */
 require.config({
     paths : {
-        "jquery" : "jquery-1.12.4"
+        "jquery" : "jquery-2.1.1.min"
     }
 });
 define(["jquery"],function(){
@@ -15,7 +15,7 @@ define(["jquery"],function(){
             $.extend(defaultSettings,settings);
             var html =
                 '<div class="publish-container">'
-                    +'<div class="mask"></div>'
+                    +'<div class="publish-mask"></div>'
                     +'<div class="publish-box">'
                          +'<header class="publish-header">'
                              +'<span class="publish-btn1">×</span>'
@@ -35,7 +35,7 @@ define(["jquery"],function(){
                          +'</footer>'
                     +'</div>'
                 +'</div>';
-            $("body").append(html);
+            $("#index").append(html);
             $(".dialog-box").css({
                 width: defaultSettings.width,
                 height: defaultSettings.height
@@ -43,7 +43,7 @@ define(["jquery"],function(){
             $(".publish-btn1").on('click',function(){
                 $(".publish-container").remove();
             });
-            $(".mask").on('click',function(){
+            $(".publish-mask").on('click',function(){
                 $(".publish-container").remove();
             });
 
