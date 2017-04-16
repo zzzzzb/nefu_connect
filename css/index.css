@@ -196,11 +196,12 @@ a{
     background: #f0f0f0;
     padding: 12px 0 16px 0;
 }
-.user-more{
+.user-header .user-more{
     position: absolute;
     top: 12px;
     right: 15px;
     cursor: pointer;
+    font-size: 2.5rem;
 }
 .user-photo{
     text-align: center;
