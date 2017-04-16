@@ -173,5 +173,9 @@ textarea{
     .publish-box{
         width: 80%;
         left:10%;
+        height: 200px;
+    }
+    textarea{
+        height: 110px;
     }
 }
