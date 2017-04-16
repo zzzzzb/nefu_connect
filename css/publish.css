@@ -41,6 +41,8 @@ html, body{
     float: left;
     margin-top: 5px;
     cursor: pointer;
+    font-size: 1.5rem;
+    margin-left: 5px;
 }
 .publish-header .publish-title{
     color: #ffffff;
@@ -50,6 +52,8 @@ html, body{
     float: right;
     margin-top: 5px;
     cursor: pointer;
+    font-size: 1.5rem;
+    margin-right: 5px;
 }
 textarea{
     box-sizing:border-box;
