@@ -22,7 +22,7 @@ html, body{
     left:25%;
     z-index: 1032;
     width: 50%;
-    height: 250px;
+    height: 300px;
     box-shadow: 4px 4px 20px 2px;
     -moz-box-shadow: 4px 4px 20px 2px;
     -webkit-box-shadow: 4px 4px 20px 2px;
@@ -58,7 +58,7 @@ html, body{
 textarea{
     box-sizing:border-box;
     width: 100%;
-    height: 160px;
+    height: 210px;
     resize:none;
     outline:none;
     padding: 5px;
@@ -177,9 +177,9 @@ textarea{
     .publish-box{
         width: 80%;
         left:10%;
-        height: 200px;
+        height: 250px;
     }
     textarea{
-        height: 110px;
+        height: 160px;
     }
 }
