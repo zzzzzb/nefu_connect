@@ -1,3 +1,4 @@
+/*index 开始*/
 *{
     margin:0;
     padding:0;
@@ -190,6 +191,8 @@ a{
         width: 100%;
     }
 }
+/*index 结束*/
+/*user 开始*/
 .user-header{
     width: 100%;
     height: 152px;
@@ -285,6 +288,50 @@ a{
     -moz-box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
     box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
 }
+/*user 结束*/
+/*login 开始*/
+.login-header{
+    background-color: rgb(242, 242, 242);
+    padding: 22px 0px;
+    width: 100%;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 600;
+    font-size: 1.7rem;
+}
+.login-content{
+    height: 907px;
+}
+.login-content p{
+    width: 30%;
+    margin: 30px auto;
+}
+.login, .reg{
+    width: 80%;
+    box-shadow: 4px 4px 20px 2px;
+    -moz-box-shadow: 4px 4px 20px 2px;
+    -webkit-box-shadow: 4px 4px 20px 2px;
+    -o-box-shadow: 4px 4px 20px 2px;
+    margin: 0 auto;
+    padding: 20px;
+    display: none;
+}
+.login-select{
+    display: block;
+}
+.reg span{
+    display: block;
+    text-align: center;
+    padding: 20px;
+}
+.reg img{
+    height: 60px;
+    width: 60px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+/*login 结束*/
 
 
 
