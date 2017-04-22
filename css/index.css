@@ -242,7 +242,6 @@ a{
 .user-content{
     background: rgba(0, 0, 0, 0.027);
     width: 100%;
-    height: 823px;
 }
 .user-content-title{
     height: 38px;
@@ -298,9 +297,6 @@ a{
     color: rgba(0, 0, 0, 0.6);
     font-weight: 600;
     font-size: 1.7rem;
-}
-.login-content{
-    height: 907px;
 }
 .login-content p{
     width: 30%;
