@@ -19,8 +19,15 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		$this -> load -> model('message_model');
+		$message = $this -> message_model -> get_message();
 		$this->load->helper('url');
-		$this->load->view('index');
+		$this->load->view('index',array(
+			'messages' => $message
+		));
+	}
+	public function save_message(){
+		$this -> load -> model('message_model');
 	}
 	public function user()
 	{
