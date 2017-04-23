@@ -13,6 +13,7 @@ a{
     width: 600px;
     margin:0 auto;
     position: relative;
+    padding-bottom: 50px;
 }
 #index .title{
     width: 600px;
@@ -242,6 +243,8 @@ a{
 .user-content{
     background: rgba(0, 0, 0, 0.027);
     width: 100%;
+    display: inline-block;
+    /*padding-bottom: 50px;*/
 }
 .user-content-title{
     height: 38px;
@@ -251,7 +254,8 @@ a{
 .user-content-item{
     background: #ffffff;
     width: 100%;
-    padding: 20px 0;
+    padding: 20px 0 0 0;
+    display: inline-block;
 }
 .user-content-item li{
     text-align: center;
