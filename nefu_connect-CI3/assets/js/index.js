@@ -1,3 +1,4 @@
+/*使用弹出层组件开始*/
 require(["publish"], function(publish){
     var oOpen = document.getElementById("open");
     oOpen.onclick = function() {
@@ -5,6 +6,7 @@ require(["publish"], function(publish){
         publish.open(settings);
     }
 });
+/*使用弹出层组件结束*/
 $(function(){
     var scrollFunc = function (e) {
         e = e || window.event;
@@ -62,8 +64,8 @@ $(function(){
     $(".content li .middle-text").each(function(){
         var btn="<div></div>";
         var text=$(this).html();
-        var text2=text.substring(0,140)+".....";
-        $(this).html(text.length > 140 ? text2:text);
+        var text2=text.substring(0,80)+".....";
+        $(this).html(text.length > 80 ? text2:text);
         if(text.length>text2.length){
             var bFlag=false;
             $(btn).appendTo($(this).parent());
@@ -156,7 +158,7 @@ $(function(){
 
 
     });
-
+    /*点赞开始*/
     $(".content-footer-love img").each(function(){
         var flag=false;
         $(this).on("click",function(){
@@ -175,7 +177,9 @@ $(function(){
             }
         });
     });
+    /*点赞结束*/
 
+    /*双击导航栏回到顶部开始*/
     $('#logo').on('click', function () {
         $('html, body').animate({scrollTop: 0}, 'fast');
         return false;
@@ -184,7 +188,7 @@ $(function(){
         $('html, body').animate({scrollTop: 0}, 'fast');
         return false;
     });
-
+    /*双击导航栏回到顶部结束*/
 });
 
 

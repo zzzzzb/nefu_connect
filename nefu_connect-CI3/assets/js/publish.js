@@ -13,6 +13,7 @@ define(["jquery"],function(){
 
             };
             $.extend(defaultSettings,settings);
+            /*创建DOM结构开始*/
             var html =
                 '<div class="publish-container">'
                     +'<div class="publish-mask"></div>'
@@ -36,6 +37,9 @@ define(["jquery"],function(){
                     +'</div>';
                 +'</div>';
             $("#index").append(html);
+            /*创建DOM结构结束*/
+
+            /*设置点击事件开始*/
             $(".dialog-box").css({
                 width: defaultSettings.width,
                 height: defaultSettings.height
@@ -46,7 +50,7 @@ define(["jquery"],function(){
             $(".publish-mask").on('click',function(){
                 $(".publish-container").remove();
             });
-
+            /*设置点击事件结束*/
         }
     };
 });

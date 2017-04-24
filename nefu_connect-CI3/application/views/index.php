@@ -1,3 +1,37 @@
+<!--时间友好转换开始-->
+<?php
+    header("Content-type: text/html; charset=utf8");
+    date_default_timezone_set("Asia/Shanghai");   //设置时区
+    function time_tran($the_time) {
+        $now_time = date("Y-m-d H:i:s", time());
+        //echo $now_time;
+        $now_time = strtotime($now_time);
+        $show_time = strtotime($the_time);
+        $dur = $now_time - $show_time;
+        if ($dur < 0) {
+            return $the_time;
+        } else {
+            if ($dur < 60) {
+                return $dur . '秒前';
+            } else {
+                if ($dur < 3600) {
+                    return floor($dur / 60) . '分钟前';
+                } else {
+                    if ($dur < 86400) {
+                        return floor($dur / 3600) . '小时前';
+                    } else {
+                        if ($dur < 259200) {//3天内
+                            return floor($dur / 86400) . '天前';
+                        } else {
+                            return $the_time;
+                        }
+                    }
+                }
+            }
+        }
+    }
+?>
+<!--时间友好转换结束-->
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,6 +48,7 @@
 </head>
 <body>
 <div id="index">
+    <!--导航栏开始-->
     <div class="title navbar navbar-fixed-top">
         <div class="title-left" id="logo">
             <img src="assets/fonts/favicon.ico" alt="">
@@ -21,10 +56,12 @@
         <div class="title-center" id="title">
             campus
         </div>
-        <div class="title-right" id="open">
-            <img src="assets/fonts/add.ico" alt="">
+        <div class="title-right" >
+            <img id="open" src="assets/fonts/add.ico" alt="">
         </div>
     </div>
+    <!--导航栏结束-->
+    <!--内容主体开始-->
     <div class="content">
         <ul>
             <?php foreach($messages as $message){ ?>
@@ -34,7 +71,11 @@
                         <div class="content-header-left">
                             <img src="<?php
                                 if($message->is_anonymity){
-                                    echo 'assets/img/man2.jpg';
+                                    if($message->sex == '男'){
+                                        echo 'assets/img/man2.jpg';
+                                    }else{
+                                        echo 'assets/img/woman2.jpg';
+                                    }
                                 }else{
                                     echo $message->portrait;
                                 }
@@ -49,7 +90,10 @@
                                 ?>
                             </span>
                         </div>
-                        <div class="content-header-right"><?php echo $message->post_date;?></div>
+                        <div class="content-header-right content-date"><?php
+                                $posttime = $message->post_date;
+                                echo time_tran($posttime);
+                            ?></div>
                     </div>
                     <div class="content-middle">
                         <div class="middle-text"><?php echo $message->content;?></div>
@@ -69,6 +113,8 @@
             <?php } ?>
         </ul>
     </div>
+    <!--内容主体结束-->
+    <!--底部导航栏开始-->
     <footer class="footer">
         <div class="footer-left">
             <img src="assets/fonts/page-2.ico" alt="">
@@ -77,6 +123,7 @@
             <a href="welcome/user"><img src="assets/fonts/person-1.ico" alt=""></a>
         </div>
     </footer>
+    <!--底部导航栏结束-->
 </div>
 <script src="assets/js/jquery-2.1.1.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>

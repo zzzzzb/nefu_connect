@@ -9,7 +9,7 @@
 class Message_model extends CI_Model{
 
     public function get_message(){
-        $sql = "select m.*,u.username,u.sex,u.portrait from t_message m,t_user u where m.user_id = u.user_id";
+        $sql = "select m.*,u.username,u.sex,u.portrait from t_message m,t_user u where m.user_id = u.user_id order by msg_id DESC ";
         return $this -> db -> query($sql) -> result();
     }
     public function save_message(){
