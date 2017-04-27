@@ -15,4 +15,14 @@ class Message_model extends CI_Model{
     public function save_message(){
 
     }
+    public function add_like($ids){
+        $sql = "update t_message set love_num = (love_num + 1) where msg_id = $ids;";
+        $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
+    public function reduce_like($ids){
+        $sql = "update t_message set love_num = (love_num - 1) where msg_id = $ids;";
+        $this->db->query($sql);
+        return $this->db->affected_rows();
+    }
 }

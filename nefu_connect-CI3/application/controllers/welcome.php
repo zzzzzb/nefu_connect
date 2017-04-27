@@ -25,5 +25,24 @@ class Welcome extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->view('login');
 	}
-
+	public function add_like(){
+		$ids = $this->input->get('ids');
+		$this -> load -> model('message_model');
+		$rows = $this->message_model->add_like($ids);
+		if($rows){
+			echo 'success';
+		}else{
+			echo 'fail';
+		}
+	}
+	public function reduce_like(){
+		$ids = $this->input->get('ids');
+		$this -> load -> model('message_model');
+		$rows = $this->message_model->reduce_like($ids);
+		if($rows){
+			echo 'success';
+		}else{
+			echo 'fail';
+		}
+	}
 }

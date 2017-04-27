@@ -39,7 +39,7 @@
                 </span>
                 <div class="form-group">
                     <label for="exampleInputEmail2">账号</label>
-                    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="账号">
+                    <input type="text" class="form-control" id="exampleInputEmail2" placeholder="账号">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputrePassword1">密码</label>
