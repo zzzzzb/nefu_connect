@@ -100,13 +100,22 @@
                     <div class="content-footer">
                         <div class="content-footer-love">
                             <p class="content-footer-love-pic">
-                                <img src="assets/fonts/love.ico" alt="">
+                                <img src="<?php
+                                    $defalt = 'assets/fonts/love.ico';
+                                    foreach($results as $result) {
+                                        if ($message->msg_id == $result->msg_id) {
+                                            $defalt = 'assets/fonts/love-2.ico';
+                                            break;
+                                        }
+                                    }
+                                    echo $defalt;
+                                ?>" alt="">
                                 <input type="checkbox" value="<?php echo $message->msg_id;?>">
                             </p>
                             <span><?php echo $message->love_num;?></span>
                         </div>
                         <div class="content-footer-comment">
-                            <a href="javascript:;"><img src="assets/fonts/comment.ico" alt=""></a>
+                            <a href="welcome/details?msg_id=<?php echo $message->msg_id;?>&& user_id=<?php echo $message->user_id;?>"><img src="assets/fonts/comment.ico" alt=""></a>
                             <span><?php echo $message->com_num;?></span>
                         </div>
                     </div>

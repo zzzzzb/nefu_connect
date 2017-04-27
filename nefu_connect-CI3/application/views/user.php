@@ -1,3 +1,4 @@
+<?php $loginedUser=$this->session->userdata('loginedUser') ;?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,20 +15,23 @@
 <body>
 <div id="index">
     <header class="user-header">
-        <a href="welcome/login"><span class="user-more glyphicon glyphicon-option-horizontal"></a>
-        </span>
+        <a href="welcome/login"><span class="user-more glyphicon glyphicon-option-horizontal"></span></a>
         <div class="user-photo">
-            <img src="assets/img/man1.jpg" alt="username">
-            <div>某某某</div>
+            <img src="assets/img/default.jpg" alt="username">
+            <div><?php echo $loginedUser->username;?></div>
         </div>
         <div class="user-info">
             <div class="user-info-left">
                 <span>帖子</span>
-                <span class="number">3</span>
+                <span class="number">
+                    <?php foreach ($msg_counts as $msg_count){?><?php echo $msg_count->num;?><?php }?>
+                </span>
             </div>
             <div class="user-info-right">
                 <span>回复</span>
-                <span class="number">9</span>
+                <span class="number">
+                    <?php foreach ($com_counts as $com_count){?><?php echo $com_count->num;?><?php }?>
+                </span>
             </div>
         </div>
     </header>

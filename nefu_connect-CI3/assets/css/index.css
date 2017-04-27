@@ -330,10 +330,16 @@ a{
 .login-select{
     display: block;
 }
-.reg span{
+.reg > span{
     display: inline-block;
     margin: 20px;
     position: relative;
+}
+.danger{
+    margin: 20px;
+    position: relative;
+    color:#ff0000;
+    display: none;
 }
 .reg img{
     height: 60px;

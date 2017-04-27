@@ -21,35 +21,34 @@
                 <button type="button" class="btn btn-primary btn-block btn-login">登陆</button>
                 <button type="button" class="btn btn-default btn-block btn-reg">注册</button>
             </p>
-            <form class="login login-select">
+            <form class="login login-select" method="post" action="welcome/do_login">
                 <div class="form-group">
                     <label for="exampleInputEmail1">账号</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="账号">
+                    <input name="name" class="form-control" id="exampleInputEmail1" placeholder="账号">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">密码</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+                    <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
                 </div>
-                <button type="submit" class="btn btn-default">登陆</button>
+                <button type="submit" class="btn btn-default" id="loginSubmit">登陆</button>
             </form>
-            <form class="reg">
+            <form class="reg" method="post" action="welcome/reg">
                 <span>
-                    <img src="assets/img/man1.jpg">
-                    <input class="InputPhoto" type="file">
+                    <img src="assets/img/default.jpg">
                 </span>
                 <div class="form-group">
                     <label for="exampleInputEmail2">账号</label>
-                    <input type="text" class="form-control" id="exampleInputEmail2" placeholder="账号">
+                    <input name="name" class="form-control" id="name" placeholder="账号">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputrePassword1">密码</label>
-                    <input type="password" class="form-control" id="exampleInputrePassword1" placeholder="设置密码">
+                    <input name="password" type="password" class="form-control" id="pass" placeholder="设置密码">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputrePassword2">重复密码</label>
-                    <input type="password" class="form-control" id="exampleInputrePassword2" placeholder="重复密码">
+                    <label for="exampleInputrePassword2">重复密码</label><span class="danger">密码不一致</span>
+                    <input type="password" class="form-control" id="repass" placeholder="重复密码">
                 </div>
-                <button type="submit" class="btn btn-default">注册</button>
+                <button type="submit" class="btn btn-default" id="regSubmit">注册</button>
             </form>
         </div>
         <footer class="footer">
@@ -57,25 +56,12 @@
                 <a href="welcome/index"><img src="assets/fonts/page-1.ico" alt=""></a>
             </div>
             <div class="footer-right">
-                <a href="welcome/user"><img src="assets/fonts/person-1.ico" alt=""></a>
+                <a href="javascript:;"><img src="assets/fonts/person-1.ico" alt=""></a>
             </div>
         </footer>
     </div>
-<script src="assets/js/jquery-2.1.1.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script>
-    $('.btn-login').on('click',function () {
-        $('.btn-login').removeClass('btn-default').addClass('btn-primary');
-        $('.btn-reg').removeClass('btn-primary').addClass('btn-default');
-        $('.reg').removeClass('login-select');
-        $('.login').addClass('login-select');
-    });
-    $('.btn-reg').on('click',function () {
-        $('.btn-login').removeClass('btn-primary').addClass('btn-default');
-        $('.btn-reg').removeClass('btn-default').addClass('btn-primary');
-        $('.reg').addClass('login-select');
-        $('.login').removeClass('login-select');
-    });
-</script>
+    <script src="assets/js/jquery-2.1.1.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/login.js"></script>
 </body>
 </html>
