@@ -94,9 +94,8 @@ class Welcome extends CI_Controller {
 		$this -> load -> model('message_model');
 		$this -> load -> model('like_model');
 		$rows_1 = $this->message_model->add_like($ids);
-		$row_2 = $this->like_model->save_like($ids,$loginedUser->user_id);
-//		$rows = $rows_1 && $row_2;
-		if($rows_1 && $row_2){
+		$rows_2 = $this->like_model->save_like($ids,$loginedUser->user_id);
+		if($rows_1 && $rows_2){
 			echo 'success';
 		}else{
 			echo 'fail';
@@ -106,6 +105,7 @@ class Welcome extends CI_Controller {
 		$loginedUser=$this->session->userdata("loginedUser");
 		$ids = $this->input->get('ids');
 		$this -> load -> model('message_model');
+		$this -> load -> model('like_model');
 		$rows_1 = $this->message_model->reduce_like($ids);
 		$rows_2 = $this->like_model->delete_like($ids,$loginedUser->user_id);
 		$rows = $rows_1 && $rows_2;

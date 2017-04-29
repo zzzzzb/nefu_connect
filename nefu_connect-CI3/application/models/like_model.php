@@ -12,8 +12,18 @@ class Like_model extends CI_Model{
         return $this -> db -> query($sql) -> result();
     }
     public function save_like($msg_id,$user_id){
-        $sql = "INSERT INTO t_like (msg_id, user_id) VALUES ($msg_id, $user_id)";
-        return $this -> db -> query($sql) -> affect_rows();
+        $this -> db -> insert('t_like',array(
+            'msg_id' => $msg_id,
+            'user_id' => $user_id
+        ));
+        return $this -> db -> affected_rows();
+    }
+    public function delete_like($msg_id,$user_id){
+        $this->db->delete('t_like', array(
+            'msg_id' => $msg_id,
+            'user_id' => $user_id
+        ));
+        return $this -> db -> affected_rows();
     }
 
 }
