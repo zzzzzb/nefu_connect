@@ -84,7 +84,7 @@
                                     if($message->is_anonymity){
                                         echo "某同学·".$message->sex;
                                     }else{
-                                        echo $message->username;
+                                        echo $message->realname;
                                     }
                                 ?>
                             </span>

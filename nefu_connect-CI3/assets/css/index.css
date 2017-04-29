@@ -351,7 +351,13 @@ a{
 .check-sex label{
     margin-right: 20px;
 }
-
+.alert{
+    font-size: 1.5rem;
+    margin-bottom: 2px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    display: none;
+}
 /*login 结束*/
 
 

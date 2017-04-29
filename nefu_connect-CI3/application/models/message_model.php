@@ -9,11 +9,11 @@
 class Message_model extends CI_Model{
 
     public function get_message(){
-        $sql = "select m.*,u.username,u.sex,u.portrait from t_message m,t_user u where m.user_id = u.user_id order by msg_id DESC ";
+        $sql = "select m.*,u.realname,u.sex,u.portrait from t_message m,t_user u where m.user_id = u.user_id order by msg_id DESC ";
         return $this -> db -> query($sql) -> result();
     }
     public function get_message_details($msg_id,$user_id){
-        $sql="select msg.*,u.username,u.sex,u.portrait from t_message msg,t_user u where msg.msg_id=$msg_id and  u.user_id=$user_id";
+        $sql="select msg.*,u.realname,u.sex,u.portrait from t_message msg,t_user u where msg.msg_id=$msg_id and  u.user_id=$user_id";
         return $this->db->query($sql)->result();
     }
     public function get_comment_details($msg_id){

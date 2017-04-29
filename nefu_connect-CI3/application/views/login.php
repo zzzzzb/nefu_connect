@@ -35,14 +35,22 @@
             <form class="reg" method="post" action="welcome/reg">
                 <div class="form-group">
                     <label for="exampleInputEmail2">账号</label>
+                    <div class="alert alert-warning name-alert" role="alert"></div>
                     <input name="name" class="form-control" id="name" placeholder="账号">
                 </div>
                 <div class="form-group">
+                    <label for="exampleInputEmail2">真实姓名</label>
+                    <div class="alert alert-warning realname-alert" role="alert"></div>
+                    <input name="realname" class="form-control" id="realname" placeholder="真实姓名">
+                </div>
+                <div class="form-group">
                     <label for="exampleInputrePassword1">密码</label>
+                    <div class="alert alert-warning pass-alert" role="alert"></div>
                     <input name="password" type="password" class="form-control" id="pass" placeholder="设置密码">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputrePassword2">重复密码</label><span class="danger">密码不一致</span>
+                    <label for="exampleInputrePassword2">重复密码</label>
+                    <div class="alert alert-warning repass-alert" role="alert"></div>
                     <input type="password" class="form-control" id="repass" placeholder="重复密码">
                 </div>
                 <div class="check-sex">

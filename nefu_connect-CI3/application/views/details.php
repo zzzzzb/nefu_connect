@@ -84,7 +84,7 @@ function time_tran($the_time) {
                                 if($detail->is_anonymity){
                                     echo "某同学·".$detail->sex;
                                 }else{
-                                    echo $detail->username;
+                                    echo $detail->realname;
                                 }
                                 ?>
                             </span>

@@ -57,13 +57,39 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('login');
 	}
+	public function check_reg_name(){
+		$name=$this->input->get("str");
+		$this->load->model('user_model');
+		if($name){
+			$row = $this->user_model->get_name($name);
+			if($row){
+				echo 'repeat_fail';
+			}else{
+				echo 'success';
+			}
+		}
+	}
+	public function check_reg_realname(){
+		$realname =$this->input->get("str");
+		if($realname){
+			if(preg_match('/^[\x{4e00}-\x{9fa5}]+$/u', $realname)>0){
+				echo 'success';
+			}else{
+				echo "fail";
+			}
+		}
+	}
+	public function check_reg_pass(){
+		echo 'success';
+	}
 	public function reg(){
 		$name=$this->input->post("name");
+		$realname =$this->input->post("realname");
 		$password=$this->input->post("password");
 		$portrait="assets/img/default.jpg";
 		$sex=$this->input->post("sex");
 		$this->load->model("user_model");
-		$results=$this->user_model->save($name,$password,$portrait,$sex);
+		$results=$this->user_model->save($name,$realname,$password,$portrait,$sex);
 		if($results>0){
 			redirect("welcome/login");
 		}
