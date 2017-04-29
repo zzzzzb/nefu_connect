@@ -112,18 +112,7 @@
                                     }
                                     echo $defalt;
                                 ?>" alt="">
-                                <input type="checkbox" checked="<?php
-                                    $defalt = 'false';
-                                    if($results) {
-                                        foreach ($results as $result) {
-                                            if ($message->msg_id == $result->msg_id) {
-                                                $defalt = 'checked';
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    echo $defalt;
-                                ?>" value="<?php echo $message->msg_id;?>">
+                                <input type="checkbox" value="<?php echo $message->msg_id;?>">
                             </p>
                             <span><?php echo $message->love_num;?></span>
                         </div>

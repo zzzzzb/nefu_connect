@@ -148,6 +148,13 @@ textarea{
     margin-right: 4%;
     width: 50px;
     height: 30px;
+    border: none;
+    background: transparent;
+}
+.publish-send:focus {
+    background-color: transparent;
+    border: none;
+    outline: none;
 }
 .publish-send span{
     display: inline-block;

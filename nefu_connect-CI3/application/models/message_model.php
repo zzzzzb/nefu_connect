@@ -30,4 +30,12 @@ class Message_model extends CI_Model{
         $this->db->query($sql);
         return $this->db->affected_rows();
     }
+    public function save_message($content,$anonymity,$user_id){
+        $this -> db -> insert('t_message',array(
+            'content' => $content,
+            'user_id' => $user_id,
+            'is_anonymity' => $anonymity
+        ));
+        return $this -> db -> affected_rows();
+    }
 }

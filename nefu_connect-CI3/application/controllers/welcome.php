@@ -29,7 +29,14 @@ class Welcome extends CI_Controller {
 
 	}
 	public function save_message(){
+		$loginedUser=$this->session->userdata("loginedUser");
+		$content=$this->input->post("content");
+		$anonymity=$this->input->post("anonymity");
 		$this -> load -> model('message_model');
+		$results=$this->message_model->save_message($content,$anonymity,$loginedUser->user_id);
+		if($results>0){
+			redirect("welcome/index");
+		}
 	}
 	public function user()
 	{
@@ -90,13 +97,17 @@ class Welcome extends CI_Controller {
 	}
 	public function add_like(){
 		$loginedUser=$this->session->userdata("loginedUser");
-		$ids = $this->input->get('ids');
-		$this -> load -> model('message_model');
-		$this -> load -> model('like_model');
-		$rows_1 = $this->message_model->add_like($ids);
-		$rows_2 = $this->like_model->save_like($ids,$loginedUser->user_id);
-		if($rows_1 && $rows_2){
-			echo 'success';
+		if($loginedUser){
+			$ids = $this->input->get('ids');
+			$this -> load -> model('message_model');
+			$this -> load -> model('like_model');
+			$rows_1 = $this->message_model->add_like($ids);
+			$rows_2 = $this->like_model->save_like($ids,$loginedUser->user_id);
+			if($rows_1 && $rows_2){
+				echo 'success';
+			}else{
+				echo 'fail';
+			}
 		}else{
 			echo 'fail';
 		}
