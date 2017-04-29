@@ -8,14 +8,25 @@ class Welcome extends CI_Controller {
 	}
 	public function index()
 	{
-		$this -> load -> model('message_model');
-		$this -> load -> model('like_model');
-		$message = $this -> message_model -> get_message();
-		$result = $this -> like_model -> get_msgId_by_user();;
-		$this->load->view('index',array(
-			'messages' => $message,
-			'results' => $result
-		));
+		$loginedUser=$this->session->userdata("loginedUser");
+		if($loginedUser){
+			$this -> load -> model('message_model');
+			$this -> load -> model('like_model');
+			$message = $this -> message_model -> get_message();
+			$result = $this -> like_model -> get_msgId_by_user($loginedUser->user_id);
+			$this->load->view('index',array(
+					'messages' => $message,
+					'results' => $result
+			));
+		}else{
+			$this -> load -> model('message_model');
+			$message = $this -> message_model -> get_message();
+			$this->load->view('index',array(
+					'messages' => $message,
+					'results' => ''
+			));
+		}
+
 	}
 	public function save_message(){
 		$this -> load -> model('message_model');
@@ -23,13 +34,17 @@ class Welcome extends CI_Controller {
 	public function user()
 	{
 		$loginedUser=$this->session->userdata("loginedUser");
-		$this->load->model('user_model');
-		$msg_count=$this->user_model->get_message_count($loginedUser->user_id);
-		$com_count=$this->user_model->get_comment_count($loginedUser->user_id);
-		$this->load->view('user',array(
-				"msg_counts"=>$msg_count,
-				"com_counts"=>$com_count
-		));
+		if($loginedUser) {
+			$this->load->model('user_model');
+			$msg_count = $this->user_model->get_message_count($loginedUser->user_id);
+			$com_count = $this->user_model->get_comment_count($loginedUser->user_id);
+			$this->load->view('user', array(
+					"msg_counts" => $msg_count,
+					"com_counts" => $com_count
+			));
+		}else{
+			$this->load->view('login');
+		}
 	}
 	public function login()
 	{
@@ -39,8 +54,9 @@ class Welcome extends CI_Controller {
 		$name=$this->input->post("name");
 		$password=$this->input->post("password");
 		$portrait="assets/img/default.jpg";
+		$sex=$this->input->post("sex");
 		$this->load->model("user_model");
-		$results=$this->user_model->save($name,$password,$portrait);
+		$results=$this->user_model->save($name,$password,$portrait,$sex);
 		if($results>0){
 			redirect("welcome/login");
 		}
@@ -57,6 +73,10 @@ class Welcome extends CI_Controller {
 			redirect("welcome/login");
 		}
 	}
+	public function exit_login(){
+		$this->session->unset_userdata("loginedUser");
+		$this->load->view('login');
+	}
 	public function details(){
 		$msg_id=$this->input->get("msg_id");
 		$user_id=$this->input->get("user_id");
@@ -69,19 +89,26 @@ class Welcome extends CI_Controller {
 		));
 	}
 	public function add_like(){
+		$loginedUser=$this->session->userdata("loginedUser");
 		$ids = $this->input->get('ids');
 		$this -> load -> model('message_model');
-		$rows = $this->message_model->add_like($ids);
-		if($rows){
+		$this -> load -> model('like_model');
+		$rows_1 = $this->message_model->add_like($ids);
+		$row_2 = $this->like_model->save_like($ids,$loginedUser->user_id);
+//		$rows = $rows_1 && $row_2;
+		if($rows_1 && $row_2){
 			echo 'success';
 		}else{
 			echo 'fail';
 		}
 	}
 	public function reduce_like(){
+		$loginedUser=$this->session->userdata("loginedUser");
 		$ids = $this->input->get('ids');
 		$this -> load -> model('message_model');
-		$rows = $this->message_model->reduce_like($ids);
+		$rows_1 = $this->message_model->reduce_like($ids);
+		$rows_2 = $this->like_model->delete_like($ids,$loginedUser->user_id);
+		$rows = $rows_1 && $rows_2;
 		if($rows){
 			echo 'success';
 		}else{

@@ -163,8 +163,15 @@ $(function(){
         $(this).siblings().on('click',function(){
             $(this).siblings().click();
         });
-        var flag=false;
+        var flag = false;
+        //if(url == 'assets/fonts/love.ico'){
+        //    flag = false;
+        //}else{
+        //    flag = true;
+        //}
         $(this).on("click",function(){
+            var url = $('.content-footer-love img').attr("src");
+            console.log(url);
             var html=$(this).parent().siblings().html();
             var html2=parseInt(html);
             if(flag){

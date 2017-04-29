@@ -33,9 +33,6 @@
                 <button type="submit" class="btn btn-default" id="loginSubmit">登陆</button>
             </form>
             <form class="reg" method="post" action="welcome/reg">
-                <span>
-                    <img src="assets/img/default.jpg">
-                </span>
                 <div class="form-group">
                     <label for="exampleInputEmail2">账号</label>
                     <input name="name" class="form-control" id="name" placeholder="账号">
@@ -47,6 +44,10 @@
                 <div class="form-group">
                     <label for="exampleInputrePassword2">重复密码</label><span class="danger">密码不一致</span>
                     <input type="password" class="form-control" id="repass" placeholder="重复密码">
+                </div>
+                <div class="check-sex">
+                    <label>男：<input type="radio" checked="checked" name="sex" value="男"></label>
+                    <label>女：<input type="radio" name="sex" value="女"></label>
                 </div>
                 <button type="submit" class="btn btn-default" id="regSubmit">注册</button>
             </form>

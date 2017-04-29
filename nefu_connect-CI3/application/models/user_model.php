@@ -1,10 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class User_model extends CI_Model{
-    public function save($name,$password,$portrait){
+    public function save($name,$password,$portrait,$sex){
         $this->db->insert("t_user",array(
             "username"=>$name,
             "password"=>$password,
-            "portrait"=>$portrait
+            "portrait"=>$portrait,
+            "sex"=>$sex
         ));
         return $this->db->affected_rows();
     }

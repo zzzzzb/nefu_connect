@@ -15,9 +15,9 @@
 <body>
 <div id="index">
     <header class="user-header">
-        <a href="welcome/login"><span class="user-more glyphicon glyphicon-option-horizontal"></span></a>
+        <a href="welcome/exit_login"><span class="user-more glyphicon glyphicon-option-horizontal"></span></a>
         <div class="user-photo">
-            <img src="assets/img/default.jpg" alt="username">
+            <img src="<?php echo $loginedUser->portrait;?>" alt="username">
             <div><?php echo $loginedUser->username;?></div>
         </div>
         <div class="user-info">

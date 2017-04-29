@@ -147,6 +147,12 @@ function time_tran($the_time) {
     </div>
     <!--评论主体结束-->
     <!--内容主体结束-->
+    <!--尾部开始-->
+    <div class="footer">
+        <textarea name="" id="" cols="30" rows="1" placeholder="请登录后再评论"></textarea>
+        <div>发送</div>
+    </div>
+    <!--尾部结束-->
 </div>
 </div>
 <script src="assets/js/jquery-2.1.1.min.js"></script>

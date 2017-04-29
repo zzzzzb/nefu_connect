@@ -102,10 +102,12 @@
                             <p class="content-footer-love-pic">
                                 <img src="<?php
                                     $defalt = 'assets/fonts/love.ico';
-                                    foreach($results as $result) {
-                                        if ($message->msg_id == $result->msg_id) {
-                                            $defalt = 'assets/fonts/love-2.ico';
-                                            break;
+                                    if($results) {
+                                        foreach ($results as $result) {
+                                            if ($message->msg_id == $result->msg_id) {
+                                                $defalt = 'assets/fonts/love-2.ico';
+                                                break;
+                                            }
                                         }
                                     }
                                     echo $defalt;

@@ -7,9 +7,13 @@
  */
 class Like_model extends CI_Model{
 
-    public function get_msgId_by_user(){
-        $sql = "select * from t_like";
+    public function get_msgId_by_user($user_id){
+        $sql = "select * from t_like WHERE user_id = $user_id";
         return $this -> db -> query($sql) -> result();
+    }
+    public function save_like($msg_id,$user_id){
+        $sql = "INSERT INTO t_like (msg_id, user_id) VALUES ($msg_id, $user_id)";
+        return $this -> db -> query($sql) -> affect_rows();
     }
 
 }
