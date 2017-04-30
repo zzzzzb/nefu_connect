@@ -117,7 +117,7 @@
                             <span><?php echo $message->love_num;?></span>
                         </div>
                         <div class="content-footer-comment">
-                            <a href="welcome/details?msg_id=<?php echo $message->msg_id;?>&& user_id=<?php echo $message->user_id;?>"><img src="assets/fonts/comment.ico" alt=""></a>
+                            <a href="welcome/details?msg_id=<?php echo $message->msg_id;?>"><img src="assets/fonts/comment.ico" alt=""></a>
                             <span><?php echo $message->com_num;?></span>
                         </div>
                     </div>

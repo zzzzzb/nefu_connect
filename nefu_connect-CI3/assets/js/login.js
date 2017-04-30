@@ -32,7 +32,7 @@ $(function(){
                     Flag4 = true;
                 }
                 else if (data == 'fail') {
-                    $('.name-alert').html("反正你就是不对").css({display: 'block'});
+                    $('.name-alert').html("xss攻击不可取，年轻人").css({display: 'block'});
                     Flag4 = false;
                 }else if(data == 'repeat_fail'){
                     $('.name-alert').html("用户名重复").css({display: 'block'});
@@ -43,8 +43,12 @@ $(function(){
     });
     $("#realname").on("blur",function(){
         var str = $(this).val();
+        var str2 =  $("#pass").val();
         if(str == ''){
             $('.realname-alert').html("真实姓名不能为空").css({display: 'block'});
+            Flag1 = false;
+        }else if(str == str2){
+            $('.realname-alert').html("账号密码不能一样").css({display: 'block'});
             Flag1 = false;
         }else{
             $.get('welcome/check_reg_realname',{
@@ -62,12 +66,16 @@ $(function(){
     });
     $("#pass").on("blur",function(){
         var str = $(this).val();
+        var str2 = $("#name").val();
         if(str == ''){
             $('.pass-alert').html("密码不能为空").css({display: 'block'});
             Flag2 = false;
         }else if(str.length < 6){
-                $('.pass-alert').html("密码不能小于6位").css({display: 'block'});
-                Flag2 = false;
+            $('.pass-alert').html("密码不能小于6位").css({display: 'block'});
+            Flag2 = false;
+        }else if(str == str2){
+            $('.pass-alert').html("账号密码不能一样").css({display: 'block'});
+            Flag2 = false;
         }else{
             $.get('welcome/check_reg_pass',{
                 'str': str
@@ -76,6 +84,10 @@ $(function(){
                     $('.pass-alert').css({display: 'none'});
                     Flag2 = true;
                 }else if(data == 'fail'){
+                    $('.pass-alert').html("密码过于简单").css({display: 'block'});
+                    Flag2 = false;
+                }else if(data == 'xss_fail'){
+                    $('.pass-alert').html("XSS攻击不可取，年轻人").css({display: 'block'});
                     Flag2 = false;
                 }
             });

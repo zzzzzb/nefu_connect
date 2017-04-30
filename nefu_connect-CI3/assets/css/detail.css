@@ -36,7 +36,7 @@ a{
     line-height:45px ;
 }
 .title-center{
-    font-size: 17px;
+    font-size: 1.7rem;
     color:#fff;
     text-align: center;
     cursor: pointer;
@@ -44,23 +44,16 @@ a{
 .title-left{
     width: 30px;
     height: 30px;
+    font-size: 1.5rem;
 }
 .title-left a{
     text-decoration: none;
     line-height: 30px;
     color:#fff;
-    font-size: 17px;
     font-family: Arial, Microsoft YaHei;
 }
 .title-right{
-    text-align: right;
-    font-size: 17px;
-    color:#fff;
-}
-.title-right img{
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
+
 }
 #index .wrapper{
     width: 600px;
@@ -189,35 +182,19 @@ a{
     position: fixed;
     width: 100%;
     max-width: 600px;
-    display: flex;
     color: rgba(0, 0, 0, 0.8);
     padding: 12px 15px;
     bottom: 0px;
-    border-top: 0.5px solid rgba(0, 0, 0, 0.0980392);
+    background: #fff;
     box-shadow: rgba(0, 0, 0, 0.0470588) 0.5px 0.5px 0.5px 0.5px;
 }
-.footer textarea{
-    flex: 1 1 auto;
-    background-color: rgb(242, 242, 242);
-    border-radius: 5px;
-    border-style: none;
-    outline: none;
-    min-height: 22px;
-    line-height: 22px;
-    font-size: 15px;
-    resize: none;
-    padding: 5px 6px;
-    margin-right: 8px;
-    height: 32px;
+.footer form{
+    max-width: 600px;
+    color: rgba(0, 0, 0, 0.8);
+    bottom: 0;
+    box-shadow: rgba(0, 0, 0, 0.0470588) 0.5px 0.5px 0.5px 0.5px;
 }
-.footer div{
-    color: rgb(170, 170, 170);
-    flex: 0 1 35px;
-    padding: 4px 0px;
-    text-align: center;
-    font-size: 17px;
-    cursor: pointer;
-}
+
 @media(max-width: 600px){
     #index{
         width: 100%;

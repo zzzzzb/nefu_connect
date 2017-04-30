@@ -62,7 +62,9 @@ class Welcome extends CI_Controller {
 		$this->load->model('user_model');
 		if($name){
 			$row = $this->user_model->get_name($name);
-			if($row){
+			if(strstr($name,"<script>")){
+				echo 'fail';
+			}else if($row){
 				echo 'repeat_fail';
 			}else{
 				echo 'success';
@@ -80,7 +82,22 @@ class Welcome extends CI_Controller {
 		}
 	}
 	public function check_reg_pass(){
-		echo 'success';
+		$pass =$this->input->get("str");
+		$low_pass = ['asdfgh',123456,666666,333333,222222,111111,999999,888888,'qwerty','zxcvbn',123456789,1234567];
+		if(strstr($pass,"<script>")){
+			echo 'xss_fail';
+		}else{
+			$flag = 'fail';
+			foreach($low_pass as $pas){
+				if($pass == $pas){
+					$flag = 'fail';
+					break;
+				}else{
+					$flag = 'success';
+				}
+			}
+			echo $flag;
+		}
 	}
 	public function reg(){
 		$name=$this->input->post("name");
@@ -111,14 +128,21 @@ class Welcome extends CI_Controller {
 		$this->load->view('login');
 	}
 	public function details(){
+		$loginedUser=$this->session->userdata("loginedUser");
 		$msg_id=$this->input->get("msg_id");
-		$user_id=$this->input->get("user_id");
 		$this->load->model('message_model');
-		$result=$this->message_model->get_message_details($msg_id,$user_id);
-		$comment=$this->message_model->get_comment_details($msg_id);
+		$this->load->model('comment_model');
+		$detail=$this->message_model->get_message_details($msg_id);
+		$comment=$this->comment_model->get_comment_details($msg_id);
+		if($loginedUser){
+			$is_login=1;
+		}else{
+			$is_login=0;
+		}
 		$this->load->view("details",array(
-				'details'=>$result,
-				'comments'=>$comment
+				'detail'=>$detail,
+				'comments'=>$comment,
+				'is_login'=>$is_login
 		));
 	}
 	public function add_like(){
@@ -151,5 +175,14 @@ class Welcome extends CI_Controller {
 		}else{
 			echo 'fail';
 		}
+	}
+	public function add_comment(){
+		$loginedUser=$this->session->userdata("loginedUser");
+		$content=$this->input->post("comment");
+		$msg_id=$this->input->post("hid_msg_id");
+		$this->load->model("comment_model");
+		$this->comment_model->add_com_num($msg_id);
+		$this->comment_model->add_com($content,$msg_id,$loginedUser->user_id);
+		redirect("welcome/details?msg_id=$msg_id");
 	}
 }
