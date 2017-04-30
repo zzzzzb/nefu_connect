@@ -21,8 +21,8 @@ class User_model extends CI_Model{
         $sql="select count(*) num from t_message where user_id=$user_id";
         return $this->db->query($sql)->result();
     }
-    public function get_comment_count($user_id){
-        $sql="select count(*) num from t_comment where msg_id in (select msg_id from t_message where user_id=$user_id)";
+    public function get_love_count($user_id){
+        $sql="SELECT count(*) num FROM t_like WHERE user_id=1";
         return $this->db->query($sql)->result();
     }
     public function get_name($name){

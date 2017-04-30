@@ -44,7 +44,7 @@ class Welcome extends CI_Controller {
 		if($loginedUser) {
 			$this->load->model('user_model');
 			$msg_count = $this->user_model->get_message_count($loginedUser->user_id);
-			$com_count = $this->user_model->get_comment_count($loginedUser->user_id);
+			$com_count = $this->user_model->get_love_count($loginedUser->user_id);
 			$this->load->view('user', array(
 					"msg_counts" => $msg_count,
 					"com_counts" => $com_count
@@ -185,4 +185,26 @@ class Welcome extends CI_Controller {
 		$this->comment_model->add_com($content,$msg_id,$loginedUser->user_id);
 		redirect("welcome/details?msg_id=$msg_id");
 	}
+	public function your_msg(){
+        $loginedUser=$this->session->userdata("loginedUser");
+        $this->load->model('message_model');
+        $this -> load -> model('like_model');
+        $message=$this->message_model->get_your_msg($loginedUser->user_id);
+        $result = $this -> like_model -> get_msgId_by_user($loginedUser->user_id);
+        $this->load->view('page',array(
+            'messages'=>$message,
+            'results'=>$result
+        ));
+    }
+    public function your_love(){
+        $loginedUser=$this->session->userdata("loginedUser");
+        $this->load->model('message_model');
+        $this -> load -> model('like_model');
+        $message=$this->message_model->get_your_love($loginedUser->user_id);
+        $result = $this -> like_model -> get_msgId_by_user($loginedUser->user_id);
+        $this->load->view('love',array(
+            'messages'=>$message,
+            'results'=>$result
+        ));
+    }
 }

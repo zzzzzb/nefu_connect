@@ -9,7 +9,7 @@
     <link rel="shortcut icon" href="assets/fonts/favicon.ico" type="assets/img/x-icon" />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/index.css">
-    <title>campusInfo</title>
+    <title>东林匿名信息平台nefu_connect</title>
 </head>
 <body>
     <div id="index">

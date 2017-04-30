@@ -34,4 +34,16 @@ class Message_model extends CI_Model{
         ));
         return $this -> db -> affected_rows();
     }
+    public function get_your_msg($user_id){
+        $sql="SELECT u.*,msg.*
+                FROM t_user u,t_message msg
+                WHERE u.user_id=$user_id and msg.user_id=$user_id ORDER BY post_date DESC";
+        return $this->db->query($sql)->result();
+    }
+    public function get_your_love($msg_id){
+        $sql="SELECT msg.*,u.*
+FROM t_like,t_message msg,t_user u
+WHERE t_like.user_id=$msg_id and msg.msg_id=t_like.msg_id and u.user_id=msg.user_id";
+        return $this->db->query($sql)->result();
+    }
 }

@@ -42,7 +42,7 @@ function time_tran($the_time) {
     <link rel="shortcut icon" href="assets/fonts/favicon.ico" type="assets/img/x-icon" />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/detail.css">
-    <title>campus</title>
+    <title>东林匿名信息平台nefu_connect</title>
 </head>
 <body>
 <div id="index">
@@ -52,7 +52,7 @@ function time_tran($the_time) {
             <a href="">首页</a>
         </div>
         <div class="title-center" id="title">
-            campus
+            NfuConnect
         </div>
         <div class="title-right" >
 
@@ -119,7 +119,7 @@ function time_tran($the_time) {
                         <div class="comment-header-left">
                             <img src="<?php echo $comment->portrait;?>" alt="">
                             <div class="column">
-                                <div class="column-one"><?php echo $comment->username;?></div>
+                                <div class="column-one"><?php echo $comment->realname;?></div>
                                 <div class="column-two">
                                     <?php
                                     $posttimesecond=$comment->post_date_com;
@@ -128,8 +128,7 @@ function time_tran($the_time) {
                                 </div>
                             </div>
                             <div class="comment-header-right">
-                                <img src="assets/fonts/love.ico" alt="">
-                                <span>0</span>
+                                <img src="assets/fonts/bear.ico" alt="">
                             </div>
                         </div>
 

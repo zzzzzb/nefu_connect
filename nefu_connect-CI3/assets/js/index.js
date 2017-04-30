@@ -1,9 +1,11 @@
 /*使用弹出层组件开始*/
 require(["publish"], function(publish){
     var oOpen = document.getElementById("open");
-    oOpen.onclick = function() {
-        var settings = {};
-        publish.open(settings);
+    if(oOpen){
+        oOpen.onclick = function() {
+            var settings = {};
+            publish.open(settings);
+        }
     }
 });
 /*使用弹出层组件结束*/
@@ -222,6 +224,11 @@ $(function(){
         return false;
     });
     /*双击导航栏回到顶部结束*/
+    $('#to_login').on('click',function(){
+        alert('请先登录再发布');
+        top.location='welcome/login';
+    });
+
 });
 
 

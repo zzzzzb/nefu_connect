@@ -121,11 +121,12 @@ textarea{
 .publish-checkbox span{
     position: relative;
     font-size: 1.5rem;
-    top: -10px;
+    top: -14px;
     cursor: pointer;
     -webkit-transition: 0.4s;
     -moz-transition: 0.4s;
     transition: 0.4s;
+    margin-left: 5px;
 }
 .publish-checkbox input:hover + label::after{
     -webkit-box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);

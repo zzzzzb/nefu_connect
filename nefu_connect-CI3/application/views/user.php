@@ -4,7 +4,7 @@
 <head>
     <base href="<?php echo site_url();?>">
     <meta charset="UTF-8">
-    <title>campusInfo</title>
+    <title>东林匿名信息平台nefu_connect</title>
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -15,72 +15,77 @@
 <body>
 <div id="index">
     <header class="user-header">
-        <a href="welcome/exit_login"><span class="user-more glyphicon glyphicon-option-horizontal"></span></a>
+<!--        <a href="welcome/exit_login"><span class="user-more glyphicon glyphicon-option-horizontal"></span></a>-->
+        <button type="button" class="user-more glyphicon glyphicon-option-horizontal" data-toggle="modal" data-target=".bs-example-modal-sm"></button>
         <div class="user-photo">
             <img src="<?php echo $loginedUser->portrait;?>" alt="username">
             <div><?php echo $loginedUser->realname;?></div>
         </div>
         <div class="user-info">
             <div class="user-info-left">
-                <span>帖子</span>
-                <span class="number">
-                    <?php foreach ($msg_counts as $msg_count){?><?php echo $msg_count->num;?><?php }?>
-                </span>
+                <a href="welcome/your_msg"><span>帖子</span></a>
+                <a href="welcome/your_msg">
+                    <span class="number">
+                        <?php foreach ($msg_counts as $msg_count){?><?php echo $msg_count->num;?><?php }?>
+                    </span>
+                </a>
             </div>
             <div class="user-info-right">
-                <span>回复</span>
-                <span class="number">
-                    <?php foreach ($com_counts as $com_count){?><?php echo $com_count->num;?><?php }?>
-                </span>
+                <a href="welcome/your_love"><span>喜欢</span></a>
+                <a href="welcome/your_love">
+                    <span class="number">
+                        <?php foreach ($com_counts as $com_count){?><?php echo $com_count->num;?><?php }?>
+                    </span>
+                </a>
             </div>
         </div>
     </header>
     <div class="user-content">
         <div class="user-content-title">
-            nfuconnect服务
+            nefu_connect服务
         </div>
         <div class="user-content-item">
             <ul>
                 <li class="col-xs-6 col-sm-4">
                     <div>
                         <p class="glyphicon glyphicon-music"></p><br/>
-                        <span>123</span>
+                        <span>音乐</span>
                     </div>
                  </li>
                 <li class="col-xs-6 col-sm-4">
                     <div>
                         <p class="glyphicon glyphicon-glass"></p><br/>
-                        <span>123</span>
+                        <span>吃喝玩乐</span>
                     </div>
                 </li>
                 <li class="col-xs-6 col-sm-4">
                     <div>
                         <p class="glyphicon glyphicon-pencil"></p><br/>
-                        <span>123</span>
+                        <span>学习</span>
                     </div>
                 </li>
                 <li class="col-xs-6 col-sm-4">
                     <div>
                         <p class="glyphicon glyphicon-search"></p><br/>
-                        <span>123</span>
+                        <span>搜索</span>
                     </div>
                 </li>
                 <li class="col-xs-6 col-sm-4">
                     <div>
                         <p class="glyphicon glyphicon-time"></p><br/>
-                        <span>123</span>
+                        <span>闹钟</span>
                     </div>
                 </li>
                 <li class="col-xs-6 col-sm-4">
                     <div>
                         <p class="glyphicon glyphicon-headphones"></p><br/>
-                        <span>123</span>
+                        <span>听歌</span>
                     </div>
                 </li>
                 <li class="col-xs-6 col-sm-4">
                     <div>
                         <p class="glyphicon glyphicon-book"></p><br/>
-                        <span>123</span>
+                        <span>书籍</span>
                     </div>
                 </li>
             </ul>
@@ -94,6 +99,20 @@
             <img src="assets/fonts/person-2.ico" alt="">
         </div>
     </footer>
+    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <a href="javascript:"><button type="button" id="amend_name" class="btn btn-default btn-lg btn-block">修改个人资料</button></a>
+            </div>
+            <div class="modal-content">
+                <a href="javascript:"><button type="button" id="amend_pass" class="btn btn-default btn-lg btn-block">修改密码</button></a>
+            </div>
+            <div class="modal-content">
+                <a href="welcome/exit_login"><button type="button" id="exit_login" class="btn btn-default btn-lg btn-block">退出登录</button></a>
+            </div>
+        </div>
+    </div>
+
 </div>
 <script src="assets/js/jquery-2.1.1.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>

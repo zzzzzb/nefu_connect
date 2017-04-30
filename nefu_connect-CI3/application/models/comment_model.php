@@ -14,7 +14,7 @@ class Comment_model extends CI_Model{
         return $this->db->affected_rows();
     }
     public function get_comment_details($msg_id){
-        $sql="SELECT com.* ,u.username,u.portrait FROM t_comment com,t_user u WHERE com.msg_id=$msg_id and com.com_sender=u.user_id";
+        $sql="SELECT com.* ,u.realname,u.portrait FROM t_comment com,t_user u WHERE com.msg_id=$msg_id and com.com_sender=u.user_id";
         return $this->db->query($sql)->result();
     }
 }

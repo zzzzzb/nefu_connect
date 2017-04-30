@@ -52,6 +52,9 @@ define(["jquery"],function(){
             $(".publish-mask").on('click',function(){
                 $(".publish-container").remove();
             });
+            $('.publish-header .glyphicon-ok').on('click',function(){
+                $('.publish-send').click();
+            });
             /*设置点击事件结束*/
         }
     };

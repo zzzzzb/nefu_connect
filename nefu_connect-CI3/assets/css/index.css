@@ -8,7 +8,15 @@ ul,ol{
 }
 a{
     text-decoration: none;
+    color: #000;
 }
+a:link {
+    color: #000/* 未访问的链接 */
+}
+a:visited {
+    color: #000/* 已访问的链接 */
+}
+
 #index{
     width: 600px;
     margin:0 auto;
@@ -220,6 +228,9 @@ a{
     right: 15px;
     cursor: pointer;
     font-size: 2.5rem;
+    background: transparent;
+    border: none;
+    outline:none;
 }
 .user-photo{
     text-align: center;
@@ -248,11 +259,17 @@ a{
 .user-info span{
     color: rgba(0, 0, 0, 0.498039);
     margin-right: 3px;
-    cursor: pointer;
 }
 .user-info .number{
     color: #000;
     font-size: 2rem;
+}
+.user-info a:hover{
+    text-decoration: none;
+    color: #000;
+}
+.user-info a:active{
+    text-decoration: none;
 }
 .user-content{
     background: rgba(0, 0, 0, 0.027);
@@ -287,7 +304,7 @@ a{
     -webkit-transition: 0.4s;
     -moz-transition: 0.4s;
     transition: 0.4s;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     cursor: pointer;
     margin-bottom: 20px;
     padding-top: 30px;
@@ -301,6 +318,18 @@ a{
     -moz-box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
     box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.2), 0 3px 8px 0 rgba(0, 0, 0, 0.15);
 }
+/*user弹出框开始*/
+.modal-content{
+    margin-bottom: 10px;
+}
+.modal-content a:hover{
+    text-decoration: none;
+    color: #000;
+}
+.modal-content a:active{
+    text-decoration: none;
+}
+/*user弹出框结束*/
 /*user 结束*/
 /*login 开始*/
 .login-header{
