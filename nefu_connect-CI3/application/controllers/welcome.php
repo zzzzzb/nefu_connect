@@ -6,6 +6,7 @@ class Welcome extends CI_Controller {
 	public function test(){
 		$this->load->view('test');
 	}
+	/*首页功能开始*/
 	public function index()
 	{
 		$loginedUser=$this->session->userdata("loginedUser");
@@ -16,14 +17,16 @@ class Welcome extends CI_Controller {
 			$result = $this -> like_model -> get_msgId_by_user($loginedUser->user_id);
 			$this->load->view('index',array(
 					'messages' => $message,
-					'results' => $result
+					'results' => $result,
+					'is_login' => 'yes'
 			));
 		}else{
 			$this -> load -> model('message_model');
 			$message = $this -> message_model -> get_message();
 			$this->load->view('index',array(
 					'messages' => $message,
-					'results' => ''
+					'results' => '',
+					'is_login' => 'no'
 			));
 		}
 
@@ -37,95 +40,6 @@ class Welcome extends CI_Controller {
 		if($results>0){
 			redirect("welcome/index");
 		}
-	}
-	public function user()
-	{
-		$loginedUser=$this->session->userdata("loginedUser");
-		if($loginedUser) {
-			$this->load->model('user_model');
-			$msg_count = $this->user_model->get_message_count($loginedUser->user_id);
-			$com_count = $this->user_model->get_love_count($loginedUser->user_id);
-			$this->load->view('user', array(
-					"msg_counts" => $msg_count,
-					"com_counts" => $com_count
-			));
-		}else{
-			$this->load->view('login');
-		}
-	}
-	public function login()
-	{
-		$this->load->view('login');
-	}
-	public function check_reg_name(){
-		$name=$this->input->get("str");
-		$this->load->model('user_model');
-		if($name){
-			$row = $this->user_model->get_name($name);
-			if(strstr($name,"<script>")){
-				echo 'fail';
-			}else if($row){
-				echo 'repeat_fail';
-			}else{
-				echo 'success';
-			}
-		}
-	}
-	public function check_reg_realname(){
-		$realname =$this->input->get("str");
-		if($realname){
-			if(preg_match('/^[\x{4e00}-\x{9fa5}]+$/u', $realname)>0){
-				echo 'success';
-			}else{
-				echo "fail";
-			}
-		}
-	}
-	public function check_reg_pass(){
-		$pass =$this->input->get("str");
-		$low_pass = ['asdfgh',123456,666666,333333,222222,111111,999999,888888,'qwerty','zxcvbn',123456789,1234567];
-		if(strstr($pass,"<script>")){
-			echo 'xss_fail';
-		}else{
-			$flag = 'fail';
-			foreach($low_pass as $pas){
-				if($pass == $pas){
-					$flag = 'fail';
-					break;
-				}else{
-					$flag = 'success';
-				}
-			}
-			echo $flag;
-		}
-	}
-	public function reg(){
-		$name=$this->input->post("name");
-		$realname =$this->input->post("realname");
-		$password=$this->input->post("password");
-		$portrait="assets/img/default.jpg";
-		$sex=$this->input->post("sex");
-		$this->load->model("user_model");
-		$results=$this->user_model->save($name,$realname,$password,$portrait,$sex);
-		if($results>0){
-			redirect("welcome/login");
-		}
-	}
-	public function do_login(){
-		$name=$this->input->post("name");
-		$password=$this->input->post("password");
-		$this->load->model('user_model');
-		$row=$this->user_model->get_by_name_pwd($name,$password);
-		if($row){
-			$this->session->set_userdata("loginedUser",$row);
-			redirect("welcome/user");
-		}else{
-			redirect("welcome/login");
-		}
-	}
-	public function exit_login(){
-		$this->session->unset_userdata("loginedUser");
-		$this->load->view('login');
 	}
 	public function details(){
 		$loginedUser=$this->session->userdata("loginedUser");
@@ -185,26 +99,120 @@ class Welcome extends CI_Controller {
 		$this->comment_model->add_com($content,$msg_id,$loginedUser->user_id);
 		redirect("welcome/details?msg_id=$msg_id");
 	}
+	/*首页功能结束*/
+	/*用户页功能开始*/
+	public function user()
+	{
+		$loginedUser=$this->session->userdata("loginedUser");
+		if($loginedUser) {
+			$this->load->model('user_model');
+			$msg_count = $this->user_model->get_message_count($loginedUser->user_id);
+			$com_count = $this->user_model->get_love_count($loginedUser->user_id);
+			$this->load->view('user', array(
+					"msg_counts" => $msg_count,
+					"com_counts" => $com_count
+			));
+		}else{
+			$this->load->view('login');
+		}
+	}
+	public function login()
+	{
+		$this->load->view('login');
+	}
+	public function check_reg_name(){
+		$name=$this->input->get("str");
+		$this->load->model('user_model');
+		if($name){
+			$row = $this->user_model->get_name($name);
+			if(strstr($name,"<script>")){
+				echo 'fail';
+			}else if($row){
+				echo 'repeat_fail';
+			}else{
+				echo 'success';
+			}
+		}
+	}
+	public function check_reg_realname(){
+		$realname =$this->input->get("str");
+		if($realname){
+			if(preg_match('/^[\x{4e00}-\x{9fa5}]+$/u', $realname)>0){
+				echo 'success';
+			}else{
+				echo "fail";
+			}
+		}
+	}
+	public function check_reg_pass(){
+		$pass =$this->input->get("str");
+		$low_pass = array('asdfgh',123456,666666,333333,222222,111111,999999,888888,'qwerty','zxcvbn',123456789,1234567);
+		if(strstr($pass,"<script>")){
+			echo 'xss_fail';
+		}else{
+			$flag = 'fail';
+			foreach($low_pass as $pas){
+				if($pass == $pas){
+					$flag = 'fail';
+					break;
+				}else{
+					$flag = 'success';
+				}
+			}
+			echo $flag;
+		}
+	}
+	public function reg(){
+		$name=$this->input->post("name");
+		$realname =$this->input->post("realname");
+		$password=$this->input->post("password");
+		$portrait="assets/img/default.jpg";
+		$sex=$this->input->post("sex");
+		$this->load->model("user_model");
+		$results=$this->user_model->save($name,$realname,$password,$portrait,$sex);
+		if($results>0){
+			redirect("welcome/login");
+		}
+	}
+	public function do_login(){
+		$name=$this->input->post("name");
+		$password=$this->input->post("password");
+		$this->load->model('user_model');
+		$row=$this->user_model->get_by_name_pwd($name,$password);
+		if($row){
+			$this->session->set_userdata("loginedUser",$row);
+			redirect("welcome/user");
+		}else{
+			redirect("welcome/login");
+		}
+	}
+	public function exit_login(){
+		$this->session->unset_userdata("loginedUser");
+		$this->load->view('login');
+	}
 	public function your_msg(){
-        $loginedUser=$this->session->userdata("loginedUser");
-        $this->load->model('message_model');
-        $this -> load -> model('like_model');
-        $message=$this->message_model->get_your_msg($loginedUser->user_id);
-        $result = $this -> like_model -> get_msgId_by_user($loginedUser->user_id);
-        $this->load->view('page',array(
-            'messages'=>$message,
-            'results'=>$result
-        ));
-    }
-    public function your_love(){
-        $loginedUser=$this->session->userdata("loginedUser");
-        $this->load->model('message_model');
-        $this -> load -> model('like_model');
-        $message=$this->message_model->get_your_love($loginedUser->user_id);
-        $result = $this -> like_model -> get_msgId_by_user($loginedUser->user_id);
-        $this->load->view('love',array(
-            'messages'=>$message,
-            'results'=>$result
-        ));
-    }
+		$loginedUser=$this->session->userdata("loginedUser");
+		$this->load->model('message_model');
+		$this -> load -> model('like_model');
+		$message=$this->message_model->get_your_msg($loginedUser->user_id);
+		$result = $this -> like_model -> get_msgId_by_user($loginedUser->user_id);
+		$this->load->view('page',array(
+				'messages'=>$message,
+				'results'=>$result
+		));
+	}
+	public function your_love(){
+		$loginedUser=$this->session->userdata("loginedUser");
+		$this->load->model('message_model');
+		$this -> load -> model('like_model');
+		$message=$this->message_model->get_your_love($loginedUser->user_id);
+		$result = $this -> like_model -> get_msgId_by_user($loginedUser->user_id);
+		$this->load->view('love',array(
+				'messages'=>$message,
+				'results'=>$result
+		));
+	}
+	/*用户页功能结束*/
+
+
 }

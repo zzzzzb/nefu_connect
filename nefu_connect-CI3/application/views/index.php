@@ -57,9 +57,10 @@
         </div>
         <div class="title-right" >
             <?php
-            $open_defalt = '<img id="to_login" src="assets/fonts/add.ico" alt="">';
-            if($results){
+            if($is_login == 'yes'){
                 $open_defalt = '<img id="open" src="assets/fonts/add.ico" alt="">';
+            }else{
+                $open_defalt = '<img id="to_login" src="assets/fonts/add.ico" alt="">';
             }
             echo $open_defalt;
             ?>
@@ -75,13 +76,13 @@
                     <div class="content-header">
                         <div class="content-header-left">
                             <img src="<?php
-                                if($message->is_anonymity){
-                                    if($message->sex == '男'){
+                                if($message->is_anonymity) {
+                                    if ($message->sex == '男') {
                                         echo 'assets/img/man2.jpg';
-                                    }else{
+                                    } else {
                                         echo 'assets/img/woman2.jpg';
                                     }
-                                }else{
+                                }else {
                                     echo $message->portrait;
                                 }
                             ?>" alt="">
