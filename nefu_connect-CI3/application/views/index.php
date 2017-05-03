@@ -43,7 +43,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/index.css">
     <link rel="stylesheet" href="assets/css/publish.css">
-    <title>东林匿名信息平台nefu_connect</title>
+    <title>测试平台</title>
 </head>
 <body>
 <div id="index">

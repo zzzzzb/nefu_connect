@@ -14,7 +14,11 @@
 //}
 //echo 'k'.$i.'k';
 
-if($adawfwa){
-    echo 123;
-}
-echo 'asdaw';
+//if($adawfwa){
+//    echo 123;
+//}
+//echo 'asdaw';
+$str = 'asdfg123';
+$md5 = md5($str);
+echo $md5;
+

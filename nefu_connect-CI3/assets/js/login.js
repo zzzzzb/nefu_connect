@@ -17,12 +17,16 @@ $(function(){
     var Flag4;
     $("#name").on("blur",function(){
         var str = $(this).val();
+        var str2 =  $("#pass").val();
         if(str == ''){
-            $('.name-alert').html("用户名不能为空").css({display: 'block'});
+            $('.name-alert').html("账号不能为空").css({display: 'block'});
             Flag4 = false;
         }else if(str.length < 4){
-            $('.name-alert').html("用户名不能小于4位").css({display: 'block'});
+            $('.name-alert').html("账号不能小于4位").css({display: 'block'});
             Flag4 = false;
+        }else if(str == str2){
+            $('.name-alert').html("账号密码不能一样").css({display: 'block'});
+            Flag1 = false;
         }else{
             $.get('welcome/check_reg_name', {
                 'str': str
@@ -30,12 +34,17 @@ $(function(){
                 if(data == 'success'){
                     $('.name-alert').css({display: 'none'});
                     Flag4 = true;
-                }
-                else if (data == 'fail') {
-                    $('.name-alert').html("xss攻击不可取，年轻人").css({display: 'block'});
+                }else if (data == 'fail') {
+                    $('.name-alert').html("web攻击不可取，年轻人").css({display: 'block'});
+                    Flag4 = false;
+                }else if (data == 'blank_fail') {
+                    $('.name-alert').html("账号不能为空").css({display: 'block'});
                     Flag4 = false;
                 }else if(data == 'repeat_fail'){
                     $('.name-alert').html("用户名重复").css({display: 'block'});
+                    Flag4 = false;
+                }else if(data == 'none_fail'){
+                    $('.name-alert').html("账号不能含有空格").css({display: 'block'});
                     Flag4 = false;
                 }
             });
@@ -43,12 +52,11 @@ $(function(){
     });
     $("#realname").on("blur",function(){
         var str = $(this).val();
-        var str2 =  $("#pass").val();
         if(str == ''){
-            $('.realname-alert').html("真实姓名不能为空").css({display: 'block'});
+            $('.realname-alert').html("昵称不能为空").css({display: 'block'});
             Flag1 = false;
-        }else if(str == str2){
-            $('.realname-alert').html("账号密码不能一样").css({display: 'block'});
+        }else if(str.length > 10){
+            $('.realname-alert').html("昵称不能超过10个字").css({display: 'block'});
             Flag1 = false;
         }else{
             $.get('welcome/check_reg_realname',{
@@ -58,8 +66,11 @@ $(function(){
                     $('.realname-alert').css({display: 'none'});
                     Flag1 = true;
                 }else if(data == 'fail'){
-                    $('.realname-alert').html("真实姓名应为汉字").css({display: 'block'});
+                    $('.realname-alert').html("昵称不能有非法字符").css({display: 'block'});
                     Flag1 = false;
+                }else if(data == 'none_fail'){
+                    $('.realname-alert').html("昵称不能含有空格").css({display: 'block'});
+                    Flag4 = false;
                 }
             });
         }
@@ -86,9 +97,9 @@ $(function(){
                 }else if(data == 'fail'){
                     $('.pass-alert').html("密码过于简单").css({display: 'block'});
                     Flag2 = false;
-                }else if(data == 'xss_fail'){
-                    $('.pass-alert').html("XSS攻击不可取，年轻人").css({display: 'block'});
-                    Flag2 = false;
+                }else if(data == 'none_fail'){
+                    $('.pass-alert').html("密码不能含有空格").css({display: 'block'});
+                    Flag4 = false;
                 }
             });
 

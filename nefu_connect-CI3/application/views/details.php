@@ -42,7 +42,7 @@ function time_tran($the_time) {
     <link rel="shortcut icon" href="assets/fonts/favicon.ico" type="assets/img/x-icon" />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/detail.css">
-    <title>东林匿名信息平台nefu_connect</title>
+    <title>测试平台</title>
 </head>
 <body>
 <div id="index">
@@ -151,7 +151,7 @@ function time_tran($the_time) {
                 <?php
                 $default="<input type=\"text\" class=\"form-control\" name=\"comment\" placeholder=\"请登录后评论\" disabled>";
                 if($is_login == 1 ){
-                    $default="<input type=\"text\" class=\"form-control\" name=\"comment\" id=\"content_com\"placeholder=\"发表评论\">";
+                    $default="<input type=\"text\" class=\"form-control\" name=\"comment\" id=\"content_com\"placeholder=\"发表评论\" autocomplete=\"off\">";
                 }
                 echo $default;
                 ?>

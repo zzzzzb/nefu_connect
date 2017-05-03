@@ -7,6 +7,10 @@
  */
 class Like_model extends CI_Model{
 
+    public function get_message_like($msg_id){
+        $sql="select count(*) num from t_like where msg_id=$msg_id";
+        return $this->db->query($sql)->result();
+    }
     public function get_msgId_by_user($user_id){
         $sql = "select * from t_like WHERE user_id = $user_id";
         return $this -> db -> query($sql) -> result();

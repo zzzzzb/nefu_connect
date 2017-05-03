@@ -42,7 +42,7 @@ function time_tran($the_time) {
     <link rel="shortcut icon" href="assets/fonts/favicon.ico" type="assets/img/x-icon" />
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/index.css">
-    <title>东林匿名信息平台nefu_connect</title>
+    <title>测试平台</title>
 </head>
 <body>
 <div id="index">

@@ -387,7 +387,20 @@ a:visited {
     padding-top: 2px;
     display: none;
 }
-/*login 结束*/
 
+/*login 结束*/
+/*update 开始*/
+.update_info, .update_pass{
+    width: 80%;
+    box-shadow: 4px 4px 20px 2px;
+    -moz-box-shadow: 4px 4px 20px 2px;
+    -webkit-box-shadow: 4px 4px 20px 2px;
+    -o-box-shadow: 4px 4px 20px 2px;
+    margin: 40px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/*update 结束*/
 
 

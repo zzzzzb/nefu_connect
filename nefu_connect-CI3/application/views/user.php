@@ -4,7 +4,7 @@
 <head>
     <base href="<?php echo site_url();?>">
     <meta charset="UTF-8">
-    <title>东林匿名信息平台nefu_connect</title>
+    <title>测试平台</title>
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -26,7 +26,7 @@
                 <a href="welcome/your_msg"><span>帖子</span></a>
                 <a href="welcome/your_msg">
                     <span class="number">
-                        <?php foreach ($msg_counts as $msg_count){?><?php echo $msg_count->num;?><?php }?>
+                        <?php foreach ($msg_counts as $msg_count){ echo $msg_count->num; }?>
                     </span>
                 </a>
             </div>
@@ -34,7 +34,7 @@
                 <a href="welcome/your_love"><span>喜欢</span></a>
                 <a href="welcome/your_love">
                     <span class="number">
-                        <?php foreach ($com_counts as $com_count){?><?php echo $com_count->num;?><?php }?>
+                        <?php foreach ($com_counts as $com_count){ echo $com_count->num; }?>
                     </span>
                 </a>
             </div>
@@ -102,10 +102,10 @@
     <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
         <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
-                <a href="javascript:"><button type="button" id="amend_name" class="btn btn-default btn-lg btn-block">修改个人资料</button></a>
+                <a href="welcome/update_info"><button type="button" id="amend_name" class="btn btn-default btn-lg btn-block">修改个人资料</button></a>
             </div>
             <div class="modal-content">
-                <a href="javascript:"><button type="button" id="amend_pass" class="btn btn-default btn-lg btn-block">修改密码</button></a>
+                <a href="welcome/update_pass"><button type="button" id="amend_pass" class="btn btn-default btn-lg btn-block">修改密码</button></a>
             </div>
             <div class="modal-content">
                 <a href="welcome/exit_login"><button type="button" id="exit_login" class="btn btn-default btn-lg btn-block">退出登录</button></a>
