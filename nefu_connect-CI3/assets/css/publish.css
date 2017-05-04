@@ -2,9 +2,7 @@
     padding: 0;
     margin: 0;
 }
-html, body{
-    font-size: 10px;
-}
+
 .publish-mask{
     position: fixed;
     top: 0;

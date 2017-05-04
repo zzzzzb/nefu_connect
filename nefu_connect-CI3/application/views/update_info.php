@@ -18,7 +18,7 @@
     </header>
     <form class="update_info" method="post" action="welcome/update_realname">
         <div class="user-photo">
-            <a href=""><img src="<?php echo $loginedUser->portrait;?>" alt="username"></a>
+            <a href="upload/clip"><img src="<?php echo $loginedUser->portrait;?>" alt="username"></a>
         </div>
         <div class="form-group">
             <label for="exampleInputEmail2">昵称</label>
@@ -41,6 +41,6 @@
 </div>
 <script src="assets/js/jquery-2.1.1.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/login.js"></script>
+<script src="assets/js/nfuConnect.js"></script>
 </body>
 </html>

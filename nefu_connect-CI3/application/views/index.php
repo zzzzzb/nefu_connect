@@ -1,36 +1,3 @@
-<!--时间友好转换开始-->
-<?php
-    header("Content-type: text/html; charset=utf8");
-    date_default_timezone_set("Asia/Shanghai");   //设置时区
-    function time_tran($the_time) {
-        $now_time = date("Y-m-d H:i:s", time());
-        $now_time = strtotime($now_time);
-        $show_time = strtotime($the_time);
-        $dur = $now_time - $show_time;
-        if ($dur < 0) {
-            return $the_time;
-        } else {
-            if ($dur < 60) {
-                return $dur . '秒前';
-            } else {
-                if ($dur < 3600) {
-                    return floor($dur / 60) . '分钟前';
-                } else {
-                    if ($dur < 86400) {
-                        return floor($dur / 3600) . '小时前';
-                    } else {
-                        if ($dur < 259200) {//3天内
-                            return floor($dur / 86400) . '天前';
-                        } else {
-                            return $the_time;
-                        }
-                    }
-                }
-            }
-        }
-    }
-?>
-<!--时间友好转换结束-->
 <!doctype html>
 <html lang="en">
 <head>
@@ -69,69 +36,7 @@
     <!--导航栏结束-->
     <!--内容主体开始-->
     <div class="content">
-        <ul>
-            <?php foreach($messages as $message){ ?>
-            <li>
-                <div class="wrapper">
-                    <div class="content-header">
-                        <div class="content-header-left">
-                            <img src="<?php
-                                if($message->is_anonymity) {
-                                    if ($message->sex == '男') {
-                                        echo 'assets/img/man2.jpg';
-                                    } else {
-                                        echo 'assets/img/woman2.jpg';
-                                    }
-                                }else {
-                                    echo $message->portrait;
-                                }
-                            ?>" alt="">
-                            <span>
-                                <?php
-                                    if($message->is_anonymity){
-                                        echo "某同学·".$message->sex;
-                                    }else{
-                                        echo $message->realname;
-                                    }
-                                ?>
-                            </span>
-                        </div>
-                        <div class="content-header-right content-date"><?php
-                                $posttime = $message->post_date;
-                                echo time_tran($posttime);
-                            ?></div>
-                    </div>
-                    <div class="content-middle">
-                        <div class="middle-text"><?php echo $message->content;?></div>
-                    </div>
-                    <div class="content-footer">
-                        <div class="content-footer-love">
-                            <p class="content-footer-love-pic">
-                                <img src="<?php
-                                    $defalt = 'assets/fonts/love.ico';
-                                    if($results) {
-                                        foreach ($results as $result) {
-                                            if ($message->msg_id == $result->msg_id) {
-                                                $defalt = 'assets/fonts/love-2.ico';
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    echo $defalt;
-                                ?>" alt="">
-                                <input type="checkbox" value="<?php echo $message->msg_id;?>">
-                            </p>
-                            <span><?php echo $message->love_num;?></span>
-                        </div>
-                        <div class="content-footer-comment">
-                            <a href="welcome/details?msg_id=<?php echo $message->msg_id;?>"><img src="assets/fonts/comment.ico" alt=""></a>
-                            <span><?php echo $message->com_num;?></span>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <?php } ?>
-        </ul>
+        <ul id="message-list"></ul>
     </div>
     <!--内容主体结束-->
     <!--底部导航栏开始-->
@@ -146,7 +51,37 @@
     <!--底部导航栏结束-->
 </div>
 <script src="assets/js/jquery-2.1.1.min.js"></script>
+<script src="assets/js/template.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/require.js" data-main="assets/js/index"></script>
+<script id="messages-push" type="text/html">
+    <li>
+        <div class="wrapper">
+            <div class="content-header">
+                <div class="content-header-left">
+                    <img src="{{portrait}}" alt="">
+                    <span>{{realname}}</span>
+                </div>
+                <div class="content-header-right content-date">{{post_date}}</div>
+            </div>
+            <div class="content-middle">
+                <div class="middle-text">{{content}}</div>
+            </div>
+            <div class="content-footer">
+                <div class="content-footer-love">
+                    <p class="content-footer-love-pic">
+                        <img src="{{is_like}}" alt="" class="content-footer-love-img">
+                        <input type="checkbox" value="{{msg_id}}" class="content-footer-love-input">
+                    </p>
+                    <span>{{love_num}}</span>
+                </div>
+                <div class="content-footer-comment">
+                    <a href="welcome/details?msg_id={{msg_id}}"><img src="assets/fonts/comment.ico" alt=""></a>
+                    <span>{{com_num}}</span>
+                </div>
+            </div>
+        </div>
+    </li>
+</script>
 </body>
 </html>

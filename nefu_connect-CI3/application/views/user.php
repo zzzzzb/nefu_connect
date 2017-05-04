@@ -47,46 +47,60 @@
         <div class="user-content-item">
             <ul>
                 <li class="col-xs-6 col-sm-4">
+                    <a href="http://music.163.com/">
                     <div>
                         <p class="glyphicon glyphicon-music"></p><br/>
-                        <span>音乐</span>
+                        <span>网易云音乐</span>
                     </div>
+                    </a>
                  </li>
                 <li class="col-xs-6 col-sm-4">
+                    <a href="http://www.meituan.com/">
                     <div>
                         <p class="glyphicon glyphicon-glass"></p><br/>
-                        <span>吃喝玩乐</span>
+                        <span>美团</span>
                     </div>
+                    </a>
                 </li>
                 <li class="col-xs-6 col-sm-4">
+                    <a href="http://www.youdao.com/">
                     <div>
                         <p class="glyphicon glyphicon-pencil"></p><br/>
-                        <span>学习</span>
+                        <span>有道</span>
                     </div>
+                    </a>
                 </li>
                 <li class="col-xs-6 col-sm-4">
+                    <a href="https://zhidao.baidu.com/">
                     <div>
                         <p class="glyphicon glyphicon-search"></p><br/>
-                        <span>搜索</span>
+                        <span>百度知道</span>
                     </div>
+                    </a>
                 </li>
                 <li class="col-xs-6 col-sm-4">
+                    <a href="http://map.baidu.com/">
                     <div>
-                        <p class="glyphicon glyphicon-time"></p><br/>
-                        <span>闹钟</span>
+                        <p class="glyphicon glyphicon-map-marker"></p><br/>
+                        <span>百度地图</span>
                     </div>
+                    </a>
                 </li>
                 <li class="col-xs-6 col-sm-4">
+                    <a href="http://mail.163.com/">
                     <div>
-                        <p class="glyphicon glyphicon-headphones"></p><br/>
-                        <span>听歌</span>
+                        <p class="glyphicon glyphicon-envelope"></p><br/>
+                        <span>网易邮箱</span>
                     </div>
+                    </a>
                 </li>
                 <li class="col-xs-6 col-sm-4">
+                    <a href="https://zh.airbnb.com/">
                     <div>
-                        <p class="glyphicon glyphicon-book"></p><br/>
-                        <span>书籍</span>
+                        <p class="glyphicon glyphicon-home"></p><br/>
+                        <span>Airbnb</span>
                     </div>
+                    </a>
                 </li>
             </ul>
         </div>

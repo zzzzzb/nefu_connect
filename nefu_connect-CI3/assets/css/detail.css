@@ -8,6 +8,9 @@ ul,ol{
 a{
     text-decoration: none;
 }
+html, body{
+    font-size: 10px;
+}
 #index{
     width: 600px;
     margin:0 auto;
@@ -77,6 +80,10 @@ a{
     align-items: center;
     cursor: pointer;
 }
+.content-header-left span{
+    font-family: Arial, Microsoft YaHei;
+    font-size: 1.6rem;
+}
 .content-header-right{
     float: right;
     color: rgb(179, 179, 179);
@@ -129,10 +136,24 @@ a{
     height: 22px;
     margin-right: 1px;
 }
+.content-footer-love-pic{
+    position: relative;
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+}
+.content-footer-love-pic input{
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    position: absolute;
+    top: 8px;
+    left: 0;
+}
 .content-footer span{
     font-family: Arial, Microsoft YaHei;
     color: rgb(170, 170, 170);
-    font-size: 18px;
+    font-size: 1.8rem;
 }
 .comment li{
     border-bottom: 1px solid rgba(0, 0, 0, 0.0980392);

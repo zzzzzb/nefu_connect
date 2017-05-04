@@ -15,6 +15,13 @@ class Like_model extends CI_Model{
         $sql = "select * from t_like WHERE user_id = $user_id";
         return $this -> db -> query($sql) -> result();
     }
+    public function get_by_user_msgId($user_id,$msg_id){
+        $query=$this->db->get_where('t_like',array(
+            "user_id"=>$user_id,
+            "msg_id"=>$msg_id
+        ));
+        return $query->row();
+    }
     public function save_like($msg_id,$user_id){
         $this -> db -> insert('t_like',array(
             'msg_id' => $msg_id,

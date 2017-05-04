@@ -33,7 +33,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">密码</label>
-                    <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+                    <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="密码" autocomplete="off">
                 </div>
                 <button type="submit" class="btn btn-default" id="loginSubmit">登陆</button>
             </form>
@@ -51,7 +51,7 @@
                 <div class="form-group">
                     <label for="exampleInputrePassword1">密码</label>
                     <div class="alert alert-warning pass-alert" role="alert"></div>
-                    <input name="password" type="password" class="form-control" id="pass" placeholder="设置密码">
+                    <input name="password" type="password" class="form-control" id="pass" placeholder="设置密码" autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputrePassword2">重复密码</label>
@@ -76,6 +76,6 @@
     </div>
     <script src="assets/js/jquery-2.1.1.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/login.js"></script>
+    <script src="assets/js/nfuConnect.js"></script>
 </body>
 </html>

@@ -8,8 +8,8 @@
  */
 class Message_model extends CI_Model{
 
-    public function get_message(){
-        $sql = "select m.*,u.realname,u.sex,u.portrait from t_message m,t_user u where m.user_id = u.user_id order by msg_id DESC ";
+    public function get_message($limit, $offset){
+        $sql = "select m.*,u.realname,u.sex,u.portrait from t_message m,t_user u where m.user_id = u.user_id order by msg_id DESC limit $offset, $limit ";
         return $this -> db -> query($sql) -> result();
     }
 
@@ -45,5 +45,10 @@ class Message_model extends CI_Model{
     public function get_your_love($msg_id){
         $sql="SELECT msg.*,u.* FROM t_like,t_message msg,t_user u WHERE t_like.user_id=$msg_id and msg.msg_id=t_like.msg_id and u.user_id=msg.user_id";
         return $this->db->query($sql)->result();
+    }
+    public function get_all_count()
+    {
+        $sql = "select m.*,u.realname,u.sex,u.portrait from t_message m,t_user u where m.user_id = u.user_id order by msg_id DESC ";
+        return $this->db->query($sql)->num_rows();
     }
 }

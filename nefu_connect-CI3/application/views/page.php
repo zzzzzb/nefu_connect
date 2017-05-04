@@ -126,6 +126,6 @@ function time_tran($the_time) {
 
 <script src="assets/js/jquery-2.1.1.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/dianzan.js"></script>
+<script src="assets/js/nfuConnect.js"></script>
 </body>
 </html>

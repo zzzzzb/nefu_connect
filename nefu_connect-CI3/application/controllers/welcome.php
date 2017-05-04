@@ -1,6 +1,36 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+//时间友好转换开始
+header("Content-type: text/html; charset=utf8");
+date_default_timezone_set("Asia/Shanghai");   //设置时区
+function time_tran($the_time) {
+	$now_time = date("Y-m-d H:i:s", time());
+	$now_time = strtotime($now_time);
+	$show_time = strtotime($the_time);
+	$dur = $now_time - $show_time;
+	if ($dur < 0) {
+		return $the_time;
+	} else {
+		if ($dur < 60) {
+			return $dur . '秒前';
+		} else {
+			if ($dur < 3600) {
+				return floor($dur / 60) . '分钟前';
+			} else {
+				if ($dur < 86400) {
+					return floor($dur / 3600) . '小时前';
+				} else {
+					if ($dur < 259200) {//3天内
+						return floor($dur / 86400) . '天前';
+					} else {
+						return $the_time;
+					}
+				}
+			}
+		}
+	}
+}
+//时间友好转换结束
 class Welcome extends CI_Controller {
 
 	public function test(){
@@ -11,28 +41,87 @@ class Welcome extends CI_Controller {
 	{
 		$loginedUser=$this->session->userdata("loginedUser");
 		if($loginedUser){
-			$this -> load -> model('message_model');
-			$this -> load -> model('like_model');
-			$message = $this -> message_model -> get_message();
-			$result = $this -> like_model -> get_msgId_by_user($loginedUser->user_id);
 			$this->load->view('index',array(
-					'messages' => $message,
-					'results' => $result,
 					'is_login' => 'yes'
 			));
 		}else{
-			$this -> load -> model('message_model');
-			$message = $this -> message_model -> get_message();
 			$this->load->view('index',array(
-					'messages' => $message,
-					'results' => '',
 					'is_login' => 'no'
 			));
 		}
+	}
+	public function get_message(){
+		$loginedUser=$this->session->userdata("loginedUser");
+		$this -> load -> model('message_model');
+		$page = $this->input->get('page');
+		$per_page = 10;
+		$total_records = $this->message_model->get_all_count();
+		$total_page = ceil($total_records / $per_page);
+		$messages = $this->message_model->get_message($per_page, ($page - 1) * $per_page);
 
+		if($loginedUser){
+			$this -> load -> model('like_model');
+			$results = $this -> like_model -> get_msgId_by_user($loginedUser->user_id);
+			foreach($messages as $message){
+				$message->post_date = time_tran($message->post_date);
+				if($message->is_anonymity) {
+					if ($message->sex == '男') {
+						$message->portrait = 'assets/img/man2.jpg';
+						$message->realname = "某同学·男";
+					} else {
+						$message->portrait = 'assets/img/woman2.jpg';
+						$message->realname = "某同学·女";
+					}
+				}
+				$message->is_like = 'assets/fonts/love.ico';
+				foreach ($results as $result) {
+					if ($message->msg_id == $result->msg_id) {
+						$message->is_like = 'assets/fonts/love-2.ico';
+						break;
+					}
+				}
+			}
+			if ($page == $total_page) {
+				$data = array(
+						'messages' => $messages,
+						'isEnd' => true //标识数据是否已经到最后，true表示到最后
+				);
+			} else {
+				$data = array(
+						'messages' => $messages,
+						'isEnd' => false
+				);
+			}
+		}else{
+			foreach($messages as $message){
+				$message->post_date = time_tran($message->post_date);
+				$message->is_like = 'assets/fonts/love.ico';
+				if($message->is_anonymity) {
+					if ($message->sex == '男') {
+						$message->portrait = 'assets/img/man2.jpg';
+						$message->realname = "某同学·男";
+					} else {
+						$message->portrait = 'assets/img/woman2.jpg';
+						$message->realname = "某同学·女";
+					}
+				}
+			}
+
+			if ($page == $total_page) {
+				$data = array(
+						'messages' => $messages,
+						'isEnd' => true //标识数据是否已经到最后，true表示到最后
+				);
+			} else {
+				$data = array(
+						'messages' => $messages,
+						'isEnd' => false
+				);
+			}
+		}
+		echo json_encode($data);
 	}
 	public function save_message(){
-		$this->load->helper('security');
 		$loginedUser=$this->session->userdata("loginedUser");
 		$content=xss_clean($this->input->post("content"));
 		$anonymity=$this->input->post("anonymity");
@@ -47,8 +136,28 @@ class Welcome extends CI_Controller {
 		$msg_id=$this->input->get("msg_id");
 		$this->load->model('message_model');
 		$this->load->model('comment_model');
+		$this->load->model('like_model');
 		$detail=$this->message_model->get_message_details($msg_id);
+		$detail->is_like = 'assets/fonts/love.ico';
+		if($loginedUser){
+			$result = $this -> like_model -> get_by_user_msgId($loginedUser->user_id,$msg_id);
+			if($result){
+				$detail->is_like = 'assets/fonts/love-2.ico';
+			}else{
+				$detail->is_like = 'assets/fonts/love.ico';
+			}
+		}
 		$comment=$this->comment_model->get_comment_details($msg_id);
+		$detail->post_date = time_tran($detail->post_date);
+		if($detail->is_anonymity) {
+			if ($detail->sex == '男') {
+				$detail->portrait = 'assets/img/man2.jpg';
+				$detail->realname = "某同学·男";
+			} else {
+				$detail->portrait = 'assets/img/woman2.jpg';
+				$detail->realname = "某同学·女";
+			}
+		}
 		if($loginedUser){
 			$is_login=1;
 		}else{
@@ -92,7 +201,6 @@ class Welcome extends CI_Controller {
 		}
 	}
 	public function add_comment(){
-		$this->load->helper('security');
 		$loginedUser=$this->session->userdata("loginedUser");
 		$content=xss_clean($this->input->post("comment"));
 		$msg_id=$this->input->post("hid_msg_id");
