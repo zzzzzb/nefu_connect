@@ -11,21 +11,41 @@ class Upload extends CI_Controller {
         $this->load->view('clip');
     }
     public function upload_portrait(){
+        $flag = TRUE;
         $loginedUser=$this->session->userdata("loginedUser");
-        $config['upload_path']='./assets/img/user_portrait/';//设置上传路径
-        $config['allowed_types']='gif|jpg|png|jpeg';//设置上传文件的格式
-        $config['max-size']='3072';//设置文件的大小
-        $config['file_name']=$loginedUser->username;//设置文件的文件名
-        $this->load->library('upload',$config);
-        $this->upload->do_upload('up_portrait');//表单里的name属性值
-        $upload_data=$this->upload->data();
-
-            if($upload_data['file_size']>0){
-            $photo_url="assets/img/user_portrait/".$upload_data['file_name'];
-            $this->load->model("user_model");
-            $rows=$this->user_model->update_portrait($photo_url,$loginedUser->user_id);
-            if($rows>0){
-                redirect("welcome/user");
+        $base64_image_content = $this->input->post('str');
+        $this->load->model('user_model');
+        //匹配出图片的格式
+        if (preg_match('/^(data:\s*image\/(\w+);base64,)/', $base64_image_content, $result)){
+            $type = $result[2];
+            $new_file = "./assets/img/user_portrait/";
+            if(!file_exists($new_file))
+            {
+        //检查是否有该文件夹，如果没有就创建，并给予最高权限
+                mkdir($new_file, 0700);
+            }
+            $new_file = $new_file.$loginedUser->username.".{$type}";
+            if(file_exists($new_file)){
+                $flag = FALSE;
+            }
+            if (file_put_contents($new_file, base64_decode(str_replace($result[1], '', $base64_image_content)))){
+                $this->load->model("user_model");
+                if($flag){
+                    $rows=$this->user_model->update_portrait($new_file,$loginedUser->user_id);
+                    if($rows>0){
+                        $row = $this -> user_model -> get_by_user_id($loginedUser->user_id);
+                        $this -> session -> set_userdata('loginedUser',$row);
+                        echo 'success';
+                    }else{
+                        echo 'fail';
+                    }
+                }else{
+                    $row = $this -> user_model -> get_by_user_id($loginedUser->user_id);
+                    $this -> session -> set_userdata('loginedUser',$row);
+                    echo 'success';
+                }
+            }else{
+                echo 'fail';
             }
         }
     }

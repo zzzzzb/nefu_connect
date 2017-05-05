@@ -779,8 +779,8 @@
 		try {
 			var dataURL = this._canvas.toDataURL(options.outputType, options.outputQuality);
 			if (this._viewList) {
-				this._viewList.forEach(function($view, i) {
-					css($view, 'background-image', 'url('+ dataURL +')');
+				this._viewList.forEach(function ($view, i) {
+					css($view, 'background-image', 'url(' + dataURL + ')');
 				});
 			}
 			options.done.call(this, dataURL);

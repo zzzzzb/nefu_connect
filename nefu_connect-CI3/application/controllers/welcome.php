@@ -31,6 +31,28 @@ function time_tran($the_time) {
 	}
 }
 //时间友好转换结束
+function getIP()
+{
+	static $realip;
+	if (isset($_SERVER)){
+		if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])){
+			$realip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+		} else if (isset($_SERVER["HTTP_CLIENT_IP"])) {
+			$realip = $_SERVER["HTTP_CLIENT_IP"];
+		} else {
+			$realip = $_SERVER["REMOTE_ADDR"];
+		}
+	} else {
+		if (getenv("HTTP_X_FORWARDED_FOR")){
+			$realip = getenv("HTTP_X_FORWARDED_FOR");
+		} else if (getenv("HTTP_CLIENT_IP")) {
+			$realip = getenv("HTTP_CLIENT_IP");
+		} else {
+			$realip = getenv("REMOTE_ADDR");
+		}
+    }
+	return $realip;
+}
 class Welcome extends CI_Controller {
 
 	public function test(){
@@ -294,6 +316,7 @@ class Welcome extends CI_Controller {
 		}
 	}
 	public function reg(){
+		$Ip = getIP();
 		$name=$this->input->post("name");
 		$realname =$this->input->post("realname");
 		$password=$this->input->post("password");
@@ -301,7 +324,7 @@ class Welcome extends CI_Controller {
 		$portrait="assets/img/default.jpg";
 		$sex=$this->input->post("sex");
 		$this->load->model("user_model");
-		$results=$this->user_model->save($name,$realname,$md5_pass,$portrait,$sex);
+		$results=$this->user_model->save($name,$realname,$md5_pass,$portrait,$sex,$Ip);
 		if($name=='' or $realname=='' or $password==''){
 			echo '<script>alert("抱歉，发生未知错误，注册失败");top.location=\'login\';</script>';
 		}else if($results>0){

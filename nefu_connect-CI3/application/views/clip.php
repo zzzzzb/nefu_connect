@@ -30,14 +30,17 @@
 <body ontouchstart="">
 <div id="clipArea"></div>
 <input type="file" id="file">
-<button id="clipBtn">截取</button>
+<button id="clipBtn">截图</button>
+<button id="push">上传</button>
 <div id="view"></div>
 
+<script src="assets/js/jquery-2.1.1.min.js"></script>
 <script src="assets/js/iscroll-zoom.js"></script>
 <script src="assets/js/hammer.min.js"></script>
 <script src="assets/js/lrz.all.bundle.js"></script>
 <script src="assets/js/PhotoClip.js"></script>
 <script>
+    var imgUrl;
     var pc = new PhotoClip('#clipArea', {
         size: 260,
         outputSize: 640,
@@ -53,10 +56,21 @@
         },
         done: function(dataURL) {
             console.log(dataURL);
+            imgUrl = dataURL
         },
         fail: function(msg) {
             alert(msg);
         }
+    });
+    $('#push').on('click',function(){
+        $.post('upload/upload_portrait',{
+            'str':imgUrl
+        }, function(data) {
+            if(data == 'success'){
+                alert('修改成功');
+                top.location = 'welcome/update_info';
+            }
+        });
     });
 </script>
 

@@ -27,7 +27,7 @@ define(["jquery"],function(){
                          +'<textarea placeholder="你想说的话" maxlength="200" required="required" name="content"></textarea>'
                          +'<footer class="publish-footer">'
                              +'<div class="publish-checkbox">'
-                                +'<input type="checkbox" value="1" name="anonymity"/>'
+                                +'<input type="checkbox" checked="checked" value="1" name="anonymity"/>'
                                 +'<label></label>'
                                 +'<span>匿名</span>'
                              +'</div>'
