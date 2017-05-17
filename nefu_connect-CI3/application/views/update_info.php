@@ -18,12 +18,12 @@
     </header>
     <form class="update_info" method="post" action="welcome/update_realname">
         <div class="user-photo">
-            <a href="upload/clip"><img src="<?php echo $loginedUser->portrait;?>" alt="username"></a>
+            <a href="upload/clip"><img src="<?php echo $portrait;?>" alt="username"></a>
         </div>
         <div class="form-group">
             <label for="exampleInputEmail2">昵称</label>
             <div class="alert alert-warning realname-alert" role="alert"></div>
-            <input name="realname" class="form-control" id="realname" placeholder="<?php echo $loginedUser->realname;?>" autocomplete="off">
+            <input name="realname" class="form-control" id="realname" placeholder="<?php echo $realname;?>" autocomplete="off">
         </div>
         <button type="submit" class="btn btn-default" id="regSubmit">修改</button>
     </form>

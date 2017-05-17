@@ -12,7 +12,8 @@ class Upload extends CI_Controller {
     }
     public function upload_portrait(){
         $flag = TRUE;
-        $loginedUser=$this->session->userdata("loginedUser");
+        $user_id = get_cookie('user_id');
+        $username = get_cookie('username');
         $base64_image_content = $this->input->post('str');
         $this->load->model('user_model');
         //匹配出图片的格式
@@ -24,24 +25,24 @@ class Upload extends CI_Controller {
         //检查是否有该文件夹，如果没有就创建，并给予最高权限
                 mkdir($new_file, 0700);
             }
-            $new_file = $new_file.$loginedUser->username.".{$type}";
+            $new_file = $new_file.$username.".{$type}";
             if(file_exists($new_file)){
                 $flag = FALSE;
             }
             if (file_put_contents($new_file, base64_decode(str_replace($result[1], '', $base64_image_content)))){
                 $this->load->model("user_model");
                 if($flag){
-                    $rows=$this->user_model->update_portrait($new_file,$loginedUser->user_id);
+                    $rows=$this->user_model->update_portrait($new_file,$user_id);
                     if($rows>0){
-                        $row = $this -> user_model -> get_by_user_id($loginedUser->user_id);
-                        $this -> session -> set_userdata('loginedUser',$row);
+                        $row = $this -> user_model -> get_by_user_id($user_id);
+                        set_cookie("portrait",$row->portrait,86400);
                         echo 'success';
                     }else{
                         echo 'fail';
                     }
                 }else{
-                    $row = $this -> user_model -> get_by_user_id($loginedUser->user_id);
-                    $this -> session -> set_userdata('loginedUser',$row);
+                    $row = $this -> user_model -> get_by_user_id($user_id);
+                    set_cookie("portrait",$row->portrait,86400);
                     echo 'success';
                 }
             }else{

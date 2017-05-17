@@ -72,10 +72,7 @@
                             <div class="column">
                                 <div class="column-one"><?php echo $comment->realname;?></div>
                                 <div class="column-two">
-                                    <?php
-                                    $posttimesecond=$comment->post_date_com;
-                                    echo time_tran($posttimesecond);
-                                    ?>
+                                    <?php echo $comment->post_date_com; ?>
                                 </div>
                             </div>
                             <div class="comment-header-right">

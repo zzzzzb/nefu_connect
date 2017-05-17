@@ -1,4 +1,3 @@
-<?php $loginedUser=$this->session->userdata('loginedUser') ;?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +17,8 @@
         <a href="welcome/exit_login"><span class="user-more glyphicon glyphicon-option-horizontal"></span></a>
         <button type="button" class="user-more glyphicon glyphicon-option-horizontal" data-toggle="modal" data-target=".bs-example-modal-sm"></button>
         <div class="user-photo">
-            <img src="<?php echo $loginedUser->portrait;?>" alt="username">
-            <div><?php echo $loginedUser->realname;?></div>
+            <img src="<?php echo $portrait;?>" alt="username">
+            <div><?php echo $realname;?></div>
         </div>
         <div class="user-info">
             <div class="user-info-left">

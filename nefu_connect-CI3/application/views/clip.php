@@ -38,7 +38,7 @@
 <script src="assets/js/iscroll-zoom.js"></script>
 <script src="assets/js/hammer.min.js"></script>
 <script src="assets/js/lrz.all.bundle.js"></script>
-<script src="assets/js/PhotoClip.js"></script>
+<script src="assets/js/PhotoClip.min.js"></script>
 <script>
     var imgUrl;
     var pc = new PhotoClip('#clipArea', {
@@ -63,12 +63,16 @@
         }
     });
     $('#push').on('click',function(){
-        $.post('upload/upload_portrait',{
-            'str':imgUrl
-        }, function(data) {
-            if(data == 'success'){
+        $.post('upload/upload_portrait', {
+            'str': imgUrl
+        }, function (data) {
+            if (data == 'success') {
                 alert('修改成功');
                 top.location = 'welcome/update_info';
+            }else if(data == 'fail'){
+                alert('修改失败');
+            }else{
+                alert('请先截图');
             }
         });
     });

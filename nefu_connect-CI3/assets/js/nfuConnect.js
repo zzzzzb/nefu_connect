@@ -200,4 +200,29 @@ $(function(){
         });
     });
     /*点赞结束*/
+    /*展开开始*/
+    $(".content li .middle-text").each(function () {
+        var btn = "<div></div>";
+        var text = $(this).html();
+        var text2 = text.substring(0, 80) + ".....";
+        $(this).html(text.length > 80 ? text2 : text);
+        if (text.length > text2.length) {
+            var bFlag = false;
+            $(btn).appendTo($(this).parent());
+            $(this).siblings().addClass("middle-btn");
+            $(this).siblings().html("展开全文");
+            $(this).siblings().on("click", function () {
+                if (bFlag) {
+                    $(this).last().html("展开全文");
+                    $(this).siblings().html(text2);
+                    bFlag = false;
+                } else {
+                    $(this).last().html("收起");
+                    $(this).siblings().html(text);
+                    bFlag = true;
+                }
+            });
+        }
+    });
+    /*展开结束*/
 });

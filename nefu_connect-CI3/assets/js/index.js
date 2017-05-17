@@ -65,29 +65,8 @@ $(function () {
         }
     });
 
-    $(".content li .middle-text").each(function () {
-        var btn = "<div></div>";
-        var text = $(this).html();
-        var text2 = text.substring(0, 80) + ".....";
-        $(this).html(text.length > 80 ? text2 : text);
-        if (text.length > text2.length) {
-            var bFlag = false;
-            $(btn).appendTo($(this).parent());
-            $(this).siblings().addClass("middle-btn");
-            $(this).siblings().html("展开全文");
-            $(this).siblings().on("click", function () {
-                if (bFlag) {
-                    $(this).last().html("展开全文");
-                    $(this).siblings().html(text2);
-                    bFlag = false;
-                } else {
-                    $(this).last().html("收起");
-                    $(this).siblings().html(text);
-                    bFlag = true;
-                }
-            });
-        }
-    });
+
+
     /*瀑布流加载开始*/
     var msgComp = (function () {
         var Message = function (msg_id, realname, post_date, portrait, content, is_like, love_num, com_num) {
@@ -166,13 +145,37 @@ $(function () {
                     }
                 });
             },
+            express:function(){
+                $(".content li .middle-text").each(function () {
+                    var btn = "<div></div>";
+                    var text = $(this).html();
+                    var text2 = text.substring(0, 80) + ".....";
+                    $(this).html(text.length > 80 ? text2 : text);
+                    if (text.length > text2.length) {
+                        var bFlag = false;
+                        $(btn).appendTo($(this).parent());
+                        $(this).siblings().addClass("middle-btn");
+                        $(this).siblings().html("展开全文");
+                        $(this).siblings().on("click", function () {
+                            if (bFlag) {
+                                $(this).last().html("展开全文");
+                                $(this).siblings().html(text2);
+                                bFlag = false;
+                            } else {
+                                $(this).last().html("收起");
+                                $(this).siblings().html(text);
+                                bFlag = true;
+                            }
+                        });
+                    }
+                });
+            },
             loadData: function (option, callback) {
                 var param = $.extend({page: this.pageNo}, option);
                 $.get('welcome/get_message', param, function (data) {
                     for (var i = 0; i < data.messages.length; i++) {
                         var messages = data.messages;
                         var message = new Message(messages[i].msg_id, messages[i].realname, messages[i].post_date, messages[i].portrait, messages[i].content, messages[i].is_like, messages[i].love_num, messages[i].com_num);
-                        console.log(message);
                         var messageHtml = template('messages-push', message);
                         var $message = $(messageHtml);
                         $message.data('item-data', message);
@@ -181,7 +184,9 @@ $(function () {
                     this.isLoaded = true;
                     this.isEnd = data.isEnd;
                     callback && callback();
+                    this.express();
                 }.bind(this), 'json');
+
             },
             loadMore: function () {
                 var _this = this;
